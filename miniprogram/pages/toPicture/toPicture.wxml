@@ -1,0 +1,51 @@
+<view class="toPicture-pages-wrap">
+    <view class="form-action">
+        <view class="head-title">上传图片</view>
+        <view class="content">
+            <view class="empty-wrap">
+                <view>点击上传图片</view>
+                <text class="desc">每次最多上传1张，单张图片不超过5MB</text>
+            </view>
+            <!-- <view class="img-wrap">
+                <image class="icon" mode="scaleToFill" src="../../assets/bg.png"></image>
+            </view> -->
+        </view>
+    </view>
+    <view class="form-action mark-action">
+        <view class="head-title">补充说明</view>
+        <view class="content">
+                <input class="weui-input"  type="text" bindinput="bindKeyInput"  placeholder="请输入作品描述"/>
+        </view>
+    </view>
+    <view class="form-action style-action">
+        <view class="head-title">选择风格</view>
+        <view class="style-wrap">
+            <view class="img-wrap">
+                <image class="imgs" mode="scaleToFill" src="../../assets/bg.png"></image>
+                <view class="name">动漫</view>
+            </view>
+            <view class="img-wrap">
+                <image class="imgs" mode="scaleToFill" src="../../assets/bg.png"></image>
+                <view class="name">动漫</view>
+            </view>
+            <view class="img-wrap">
+                <image class="imgs" mode="scaleToFill" src="../../assets/bg.png"></image>
+                <view class="name">动漫</view>
+            </view>
+        </view>
+    </view>
+    <view class="form-action choose-type-action">
+        <view class="head-title">选择类型</view>
+        <view class="types-list">
+            <view class="item-type">像本人</view>
+            <view class="item-type activityType">创造力</view>
+        </view>
+    </view>
+    <view class="home-show-wrap">
+        <view>首页展示</view>
+            <switch type="switch" bindchange="switchChange"/>
+    </view>
+    <view class="btn-wrap">
+        <button type="primary">生产图片</button>
+    </view>
+</view>

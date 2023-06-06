@@ -1,0 +1,86 @@
+page {
+    height: 100%;
+}
+.home-container {
+    height: 100%;
+    padding: 0 32px 100px;
+    background:#1A1A1A;
+    .tab-list {
+        padding: 100rpx 0 20rpx 0;
+        .scroll-view-item_w {
+            font-size: 28rpx;
+            line-height: 1;
+            color: #999;
+            margin-right: 32rpx;
+            padding: 10rpx 0;
+            &.activity {
+                color: #fff;
+                font-size: 34rpx;
+                position: relative;
+                &:after {
+                    content: "";
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 48rpx;
+                    height: 4rpx;
+                    border-radius: 4rpx;
+                    background: linear-gradient(90deg, #1A1A1A 0%, #87F1BC 100%);;
+                }
+            }
+        }
+    }
+    .list-wrap {
+        display: flex;
+        justify-content: space-between;
+        align-content: flex-start;
+        flex-wrap: wrap;
+        align-items:self-start;
+        padding: 24rpx 0;
+        .item-wrap {
+            width: 48%;
+            background: #333;
+            margin-bottom: 16rpx;
+            border-radius: 8rpx;
+            overflow: hidden;
+            font-size: 0;
+            align-self: flex-start;
+            &:nth-child(even) {
+                // .bg-img {
+                //     height: 462rpx;
+                // }
+            }
+            .bg-img {
+                width: 100%;
+                height: 392rpx;
+                border-radius: 8rpx;
+                overflow: hidden;
+            }
+        }
+        .info-bottom {
+            display: flex;
+            align-content: center;
+            justify-content: space-between;
+            font-size: 20rpx;
+            color: #999;
+            padding: 16rpx 8rpx;
+            .ib-item {
+                line-height: 28rpx;
+                display: flex;
+                align-content: center;
+                color: #999;
+            }
+            .icon-img {
+                width: 30rpx;
+                height: 30rpx;
+                border-radius: 50%;
+                overflow: hidden;
+                vertical-align: middle;
+                margin: 0 8rpx 0 0;
+                color: #999;
+            }
+         
+        }
+    }
+    
+}

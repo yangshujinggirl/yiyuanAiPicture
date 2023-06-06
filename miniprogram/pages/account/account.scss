@@ -1,0 +1,182 @@
+.account-pages-wrap {
+    color: #fff;
+    padding: 32rpx 32rpx 120rpx;
+   .part-head-info {
+       margin-bottom: 36rpx;
+     .base-info-wrap {
+        display: flex;
+        align-content: flex-start;
+        justify-content: space-between;
+        margin-bottom: 40rpx;
+        .fx-lf {
+            display: flex;
+            
+        }
+        .avatar-wrap {
+            width: 112rpx;
+            height: 112rpx;
+            position: relative;
+            .icon-solid {
+                width: 100%;
+                height: 100%;
+            }
+            .icon-edit {
+                width: 32rpx;
+                height: 32rpx;
+                position: absolute;
+                right: 0;
+                bottom: 0;
+            }
+        }
+        .info-wrap {
+            font-size: 20rpx;
+            padding-left: 24rpx;
+          .row1 {
+              font-size: 32rpx;
+              line-height: 44rpx;
+              margin-bottom: 8rpx;
+              display: flex;
+              align-items: center;
+          } 
+          .icon-vip {
+              width: 80rpx;
+              height: 36rpx;
+              margin-left: 16rpx;
+          }
+          .row2 {
+              font-size: 24rpx;
+              line-height: 34rpx;
+              margin-bottom: 8rpx;
+          } 
+        }
+        .icon-set {
+            width: 40rpx;
+            height: 40rpx;
+        }
+     }
+     .data-Analysis-action {
+         font-size: 24rpx;
+         color: #999;
+         display: flex;
+         .item {
+             padding: 0 32rpx 0 0;
+             margin-right: 32rpx;
+             &:nth-child(1) {
+                border-right:2rpx solid #999;
+             }
+         }
+         .high {
+             color: #fff;
+             padding:0 8rpx ;
+             font-size: 40rpx;
+             line-height: 1;
+             font-weight: bold;
+         }
+     }  
+   } 
+   .part-middle-wrap {
+    width: 686rpx;
+    height: 168rpx;
+    background: #333333;
+    border-radius: 16rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 32rpx;
+    .item {
+        text-align: center;
+        font-size: 24rpx;
+        &:nth-child(1) {
+            margin-right: 160rpx;
+        }
+    }
+    .icon {
+        width: 56rpx;
+        height: 56rpx;
+    }
+   }
+   .my-works-wrap {
+    background: #333333;
+    border-radius: 16rpx;
+    padding: 32rpx;
+      .head {
+        padding-bottom: 26rpx;
+      } 
+      .works-list {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          flex-wrap: wrap;
+      }
+      .same-type-wrap {
+          width: 48%;
+          margin-bottom: 24rpx;
+        .list {
+            background: #444;
+            height: 300rpx;
+            border-radius: 8rpx 8rpx 0 0;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 49% 49%;
+            grid-template-rows: 49% 49%;
+            column-gap: 2%;
+            row-gap: 2%;
+        } 
+        .pic-item {
+            border-radius: 8rpx;
+            overflow: hidden;
+            image {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .ft {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 20rpx;
+            padding: 16rpx 24rpx;
+            background: #444;
+            .type-name {
+                font-size: 28rpx;
+            }
+        }
+        &.two-wrap {
+            .list {
+                grid-template-columns: 49% 49%;
+                grid-template-rows: auto;
+            }
+        }
+        &.one-wrap {
+            .list {
+                grid-template-columns: 100%;
+                grid-template-rows: auto;
+            }
+        }
+        &.thr-wrap {
+            .list {
+                display: grid;
+                grid-template-columns: 48% 48%;
+                grid-template-rows: 148rpx 148rpx;
+            }
+            .pic-item2 {
+                height: auto;
+                grid-row-start: 1;
+                grid-row-end: 3;
+                grid-column-start: 2;
+                grid-column-end: 3;
+            }
+        }
+        .noData-wrap {
+            background: #444;
+            height: 300rpx;
+            text-align: center;
+            font-size: 24rpx;
+            .nodata-img {
+                width: 200rpx;
+                height: 200rpx;
+            }
+        }
+     } 
+   }
+}

@@ -1,0 +1,116 @@
+
+<view class="account-pages-wrap">
+    <view class="part-head-info">
+        <view class="base-info-wrap">
+            <view class="fx-lf">
+                <view class="avatar-wrap">
+                    <image class="icon-solid" mode="scaleToFill" src="../../assets/account_icon1.png"></image>
+                    <image class="icon-edit" mode="scaleToFill" src="../../assets/account_icon0.png"></image>
+                </view>
+                <view class="info-wrap">
+                    <view class="row1">
+                        <text>倾听他的故事</text>
+                        <image class="icon-vip" mode="scaleToFill" src="../../assets/account_vip_icon.png"></image>
+                    </view>
+                    <view class="row2">每个人都有快乐的时候，你呢</view>
+                    <text>ID: 315215</text>
+                </view>
+            </view>
+            <view>
+                <image class="icon-set" mode="scaleToFill" src="../../assets/icon_download.png"></image>
+            </view>
+        </view>
+        <view class="data-Analysis-action">
+            <view class="item"><text class="high">999</text>下载</view>
+            <view class="item"><text class="high">999</text>喜欢</view>
+        </view>
+    </view>
+    <view class="part-middle-wrap">
+        <view class="item">
+            <image class="icon" mode="scaleToFill" src="../../assets/account_icon2.png"></image>
+            <view>历史下载</view>
+        </view>
+        <view class="item" bindtap="bindDrawTap">
+            <image class="icon" mode="scaleToFill" src="../../assets/account_icon3.png"></image>
+            <view>历史绘图</view>
+        </view>
+    </view>
+    <!-- 我的作品 -->
+    <view class="my-works-wrap">
+        <view class="head">我的作品</view>
+        <view class="works-list">
+            <view class="same-type-wrap">
+                <view class="list">
+                    <view class="pic-item" >
+                        <image mode="scaleToFill" src="../../assets/bg.png"></image> 
+                    </view>
+                    <view class="pic-item" >
+                        <image mode="scaleToFill" src="../../assets/bg.png"></image> 
+                    </view>
+                    <view class="pic-item" >
+                        <image mode="scaleToFill" src="../../assets/bg.png"></image> 
+                    </view>
+                    <view class="pic-item" >
+                        <image mode="scaleToFill" src="../../assets/bg.png"></image> 
+                    </view>
+                </view>
+                <view class="ft">
+                    <view class="type-name">动漫</view>
+                    <view>共999张</view>
+                </view>
+            </view>
+            <view class="same-type-wrap two-wrap">
+                <view class="list">
+                    <view class="pic-item" >
+                        <image mode="scaleToFill" src="../../assets/bg.png"></image> 
+                    </view>
+                    <view class="pic-item" >
+                        <image mode="scaleToFill" src="../../assets/bg.png"></image> 
+                    </view>
+                </view>
+                <view class="ft">
+                    <view class="type-name">动漫</view>
+                    <view>共999张</view>
+                </view>
+            </view>
+            <view class="same-type-wrap thr-wrap">
+                <view class="list">
+                    <view class="pic-item" >
+                        <image mode="scaleToFill" src="../../assets/bg.png"></image> 
+                    </view>
+                    <view class="pic-item pic-item2" >
+                        <image mode="scaleToFill" src="../../assets/bg.png"></image> 
+                    </view>
+                    <view class="pic-item" >
+                        <image mode="scaleToFill" src="../../assets/bg.png"></image> 
+                    </view>
+                </view>
+                <view class="ft">
+                    <view class="type-name">动漫</view>
+                    <view>共999张</view>
+                </view>
+            </view>
+            <view class="same-type-wrap one-wrap">
+                <view class="list">
+                    <view class="pic-item" >
+                        <image mode="scaleToFill" src="../../assets/bg.png"></image> 
+                    </view>
+                </view>
+                <view class="ft">
+                    <view class="type-name">动漫</view>
+                    <view>共999张</view>
+                </view>
+            </view>
+            <view class="same-type-wrap one-wrap">
+                <view class="noData-wrap">
+                    <image class="nodata-img" mode="scaleToFill" src="../../assets/account_noData.png"></image> 
+                    <view>暂无数据</view>
+                </view>
+                <view class="ft">
+                    <view class="type-name">动漫</view>
+                    <view>共0张</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
