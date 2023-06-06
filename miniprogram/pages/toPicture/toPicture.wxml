@@ -2,19 +2,19 @@
     <view class="form-action">
         <view class="head-title">上传图片</view>
         <view class="content">
-            <view class="empty-wrap">
+            <view class="img-wrap" wx:if="{{!!imageUrl}}" bindtap="uoloadFile">
+                <image class="icon" mode="scaleToFill" src="{{imageUrl}}"></image>
+            </view>
+            <view class="empty-wrap" bindtap="uoloadFile" wx:else>
                 <view>点击上传图片</view>
                 <text class="desc">每次最多上传1张，单张图片不超过5MB</text>
             </view>
-            <!-- <view class="img-wrap">
-                <image class="icon" mode="scaleToFill" src="../../assets/bg.png"></image>
-            </view> -->
         </view>
     </view>
     <view class="form-action mark-action">
         <view class="head-title">补充说明</view>
         <view class="content">
-                <input class="weui-input"  type="text" bindinput="bindKeyInput"  placeholder="请输入作品描述"/>
+                <textarea class="weui-input"  type="text" bindinput="bindKeyInput"  placeholder="请输入作品描述"  model:value="{{desc}}"/>
         </view>
     </view>
     <view class="form-action style-action">

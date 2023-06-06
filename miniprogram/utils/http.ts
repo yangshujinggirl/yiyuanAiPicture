@@ -1,5 +1,5 @@
 
-const domain = "https://api.qigebaobao.com/api"; //统一接口域名，测试环境
+const domain = "http://124.221.43.26:7006"; //统一接口域名，测试环境
 interface IParamsProps {
     url:string;
     data:{[x:string]:any};
@@ -91,7 +91,10 @@ const checkLogin=function(callback:Function){
     getToken(callback);
   }
 }
+export {
+    request,getToken,checkLogin
+}
 
-exports.getToken = getToken;
-exports.request = request;
-exports.checkLogin = checkLogin;
+// exports.getToken = getToken;
+// exports.request = request;
+// exports.checkLogin = checkLogin;

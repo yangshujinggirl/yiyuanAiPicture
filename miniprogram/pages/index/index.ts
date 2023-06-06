@@ -1,6 +1,7 @@
 // index.ts
 // 获取应用实例
-const app = getApp<IAppOption>()
+const app = getApp<IAppOption>();
+import {request} from '../../utils/http';
 
 Page({
   data: {
@@ -58,12 +59,36 @@ Page({
     })
   },
   onLoad() {
-   
+    this.fetchList();
+  },
+  fetchList(){
+    const params:{[x:string]:any} = {};
+    const {activityKey} = this.data;
+    switch(activityKey){
+        case 1:
+            params.level__gte = 1;
+            break;
+        case 3:
+        case 4:
+        case 5:
+            params.generate_type = activityKey;
+            break;
+    }
+    request({
+        url:"/imgai/zeus/orderlist/",
+        data:params,
+        method:"POST",
+    }).then((res)=>{
+        console.log("res",res)
+    }).catch((err)=> {
+        console.log(err)
+    })
   },
   switchTab(e) {
     const data = e.currentTarget.dataset
     this.setData({
         activityKey: data.tabid
     })
+    this.fetchList()
   }
 })
