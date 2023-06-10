@@ -4,8 +4,8 @@
     </view>
     <!-- 等待中 -->
     <view wx:if="{{activityKey == 1}}">
-        <view class="list-wrap"  wx:if="{{waitedList.length > 0}}">
-            <view class="item-wrap" wx:for="{{waitedList}}" wx:key="index">
+        <view class="list-wrap"  wx:if="{{list.length > 0}}">
+            <view class="item-wrap" wx:for="{{list}}" wx:key="index">
                 <image class="icon-place" mode="scaleToFill" src="../../assets/account_bg.png"></image>
                 <view class="animation-wrap">
                     <image class="icon" mode="scaleToFill" src="../../assets/loading.webp"></image>
@@ -20,9 +20,9 @@
     </view>
     <!-- 已生成 -->
     <view  wx:else>
-        <view class="created-list" wx:if="{{createdList.length > 0}}">
-            <view class="item-wrap" wx:for="{{createdList}}" wx:key="index">
-                <image class="icon-place" mode="scaleToFill" src="../../assets/account_bg.png"></image>
+        <view class="created-list" wx:if="{{list.length > 0}}">
+            <view class="item-wrap" wx:for="{{list}}" wx:key="index">
+                <image class="icon-place" mode="scaleToFill" src="{{item.source_img}}"></image>
             </view>
         </view>
         <view class="nodata-wrap" wx:else>

@@ -1,1 +1,41 @@
 /* pages/login/login.wxss */
+.container {
+  view {
+    width: 100%;
+  }
+  .weui-input {
+    width: 90%;
+    height: 100rpx;
+    margin: 0 auto 30rpx;
+    background-color: #fff;
+    border-radius: 10rpx;
+    padding: 0 0 0 10rpx;
+    box-sizing: border-box;
+  }
+    .logo-img {
+        width: 160rpx;
+        height: 160rpx;
+        margin-bottom: 60rpx;
+    }
+    .btn1,.btn2 {
+        width: 90%;
+        line-height: 100rpx;
+        height: 100rpx;
+        color: #fff;
+        padding: 0;
+    }
+    .btn1 {
+        background: #3cc51f;
+        margin-bottom: 30rpx;
+    }
+    .btn2 {
+        background: linear-gradient(135deg, #6EFFF7 0%, #87F1BC 100%);
+    }
+    .bottom-handle {
+      width: 90%;
+      margin: 30rpx auto 0;
+      display: flex;
+      justify-content: space-between;
+      color: #fff;
+    }
+}

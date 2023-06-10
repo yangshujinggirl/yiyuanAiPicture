@@ -1,14 +1,47 @@
 // pages/toPicture/toPicture.ts
-Page({
+const countBase = 3;
+import {request, domain} from '../../utils/http';
 
+Page({
     /**
      * 页面的初始数据
      */
     data: {
         inputValue:"",
-        imageUrl:"",
-        desc:"",
-        selectType:false,
+        imgUrl:"",
+        checked:"",
+        styleList:[
+            {
+                bgUrl:"../../assets/bg.png",
+                name:"动漫",
+                id:0
+            },{
+                bgUrl:"../../assets/bg.png",
+                name:"国风",
+                id:1
+            },{
+                bgUrl:"../../assets/bg.png",
+                name:"真人",
+                id:2
+            },
+        ],
+        generate_type:0,
+        redrawList:[{label:"像本人",value:1},{label:"创造性",value:2}],
+        redraw_type:1,
+        countList:[
+            {
+                count:1,
+                points:countBase,
+            },{
+                count:9,
+                points:9 * countBase,
+            },{
+                count:30,
+                points:30 * countBase,
+            },
+        ],
+        activityCount:1,
+        prompt:""
     },
 
     /**
@@ -23,7 +56,63 @@ Page({
         })
     },
     switchChange:function(e){
-        this.setData({selectType:e.detail.value})
+        this.setData({checked:e.detail.value})
+    },
+    switchGenerate:function(e){
+        const data = e.currentTarget.dataset
+        this.setData({generate_type:data.id})
+    },
+    switchRedraw:function(e){
+        const data = e.currentTarget.dataset
+        this.setData({redraw_type:data.id})
+    },
+    switchCount:function(e){
+        const data = e.currentTarget.dataset
+        this.setData({activityCount:data.id})
+    },
+    submit(){
+        // const params:{[x:string]:any} = {};
+        const {
+            activityCount,
+            redraw_type,
+            generate_type,
+            imgUrl,
+            prompt,
+            checked
+        } = this.data;
+        request({
+            url:"/imgai/zeus/order/",
+            data:{
+                redraw_type,generate_type,source_img:imgUrl,count:activityCount,
+                sd_data:{prompt},
+                status:checked?4:null
+            },
+        }).then((res)=>{
+            if(res?.code ===200) {
+                wx.navigateTo({
+                    url: '/pages/historyDraw/historyDraw?type=0',
+                })
+            }
+        }).catch((err)=> {
+            console.log(err)
+        })
+      },
+    /**
+     * 生命周期函数--监听页面初次渲染完成
+     */
+    onReady() {
+
+    },
+
+    /**
+     * 生命周期函数--监听页面显示
+     */
+    onShow() {
+        if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+            this.getTabBar().setData({
+                selected: 1
+            })
+        }
     },
     uoloadFile:function(e) {
         const _this = this;
@@ -38,39 +127,24 @@ Page({
               return;
             }
             wx.uploadFile({
-              url: 'https://api.qigebaobao.com/api/common/upload-image', //仅为示例，非真实的接口地址
+              url: `${domain}/imgai/zeus/upload/`, //仅为示例，非真实的接口地址
               filePath: tempFilePaths[0].tempFilePath,
-              name: 'file',
+              name: 'filename',
               header:{
-                'Authorization': wx.getStorageSync('token')
-              },
-              formData: {
-                'sourceType': 'member-idcard'
+                'token': wx.getStorageSync('token')
               },
               success (res){
                 let data = res.data;
                 data = JSON.parse(data);
-                _this.setData({imageUrl:data?.data?.imageUrl})
+                console.log("data",data)
+                _this.setData({imgUrl:data?.data?.data?.url})
               },
               fail(error){
-    
+                console.log(error)
               }
             })
           }
         })
-    },
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow() {
-
     },
 
     /**

@@ -9,11 +9,12 @@
                 </view>
                 <view class="info-wrap">
                     <view class="row1">
-                        <text>倾听他的故事</text>
+                        <text>{{userInfo.username}}</text>
                         <image class="icon-vip" mode="scaleToFill" src="../../assets/account_vip_icon.png"></image>
                     </view>
-                    <view class="row2">每个人都有快乐的时候，你呢</view>
-                    <text>ID: 315215</text>
+                    <!-- <view class="row2">每个人都有快乐的时候，你呢</view> -->
+                    <text>ID: {{userInfo.user_id}}</text>
+                    <view>积分: {{userInfo.user_id}}</view>
                 </view>
             </view>
             <view>

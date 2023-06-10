@@ -1,0 +1,4 @@
+<view class="register-wrap">
+  <input class="weui-input"  type="text" bindinput="bindKeyPassword"  placeholder="请输入手机号"  model:value="{{account}}"/>
+  <input class="weui-input"  password type="text" bindinput="bindKeyPassword"  placeholder="请输入密码"  model:value="{{password}}"/>
+</view>

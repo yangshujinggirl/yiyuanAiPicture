@@ -34,13 +34,16 @@
                 width: 100%;
                 height: 100%;
             }
+            &.activity {
+                border: 2rpx solid #87F1BC;
+            }
         }
     }
     .mark-action {
         .weui-input{
             width: 100%;
             height: 100%;
-            padding: 0 0 0 10rpx;
+            padding: 40rpx 0 0 20rpx;
         }
     }
     .style-action {
@@ -65,7 +68,7 @@
         }
     }
     .choose-type-action {
-        margin-bottom: 64rpx;
+        margin-bottom: 24rpx;
         .types-list {
             display: flex;
         }
@@ -78,7 +81,7 @@
             background: #333333;
             border-radius: 4rpx;
             margin-right: 20rpx;
-            &.activityType{
+            &.activity{
                 border: 2rpx solid #87F1BC;
             }
         }
@@ -96,6 +99,21 @@
                     background-color: red!important;
                 }
             }
+    }
+    .creat-count-action {
+        .count-list {
+            .item-count {
+                display: flex;
+                justify-content: space-between;
+                padding: 16rpx 20rpx;
+                background-color: #333333;
+                margin-bottom: 10rpx;
+                border-radius: 6rpx;
+                &.activity {
+                    border: 2rpx solid #87F1BC;
+                }
+            }
+        }
     }
     .btn-wrap {
         width: 100%;

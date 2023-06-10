@@ -1,4 +1,3 @@
-// index.ts
 // 获取应用实例
 const app = getApp<IAppOption>();
 import {request} from '../../utils/http';
@@ -29,27 +28,6 @@ Page({
         }
     ],
     list:[
-        {
-            result_img:"../../assets/bg.png",
-            download_total:100,
-            like_total:30,
-            title:"ui01"
-        }, {
-            result_img:"../../assets/bg.png",
-            download_total:400,
-            like_total:130,
-            title:"ui02"
-        }, {
-            result_img:"../../assets/bg.png",
-            download_total:1200,
-            like_total:303,
-            title:"ui03"
-        }, {
-            result_img:"../../assets/bg.png",
-            download_total:2200,
-            like_total:320,
-            title:"ui04"
-        },
     ]
   },
   // 事件处理函数
@@ -77,9 +55,12 @@ Page({
     request({
         url:"/imgai/zeus/orderlist/",
         data:params,
-        method:"POST",
+        method:"GET",
     }).then((res)=>{
         console.log("res",res)
+        if(res?.code ===200) {
+            this.setData({ list:res.data?.results })
+        }
     }).catch((err)=> {
         console.log(err)
     })
@@ -90,5 +71,12 @@ Page({
         activityKey: data.tabid
     })
     this.fetchList()
+  },
+  onShow(){
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+            this.getTabBar().setData({
+            selected: 0
+            })
+    }
   }
 })

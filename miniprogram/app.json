@@ -9,7 +9,8 @@
         "pages/account/account",
         "pages/textToPicture/textToPicture",
         "pages/historyDraw/historyDraw",
-        "pages/creatPicture/creatPicture"
+        "pages/creatPicture/creatPicture",
+        "pages/register/register"
     ],
     "window": {
         "backgroundTextStyle": "light",

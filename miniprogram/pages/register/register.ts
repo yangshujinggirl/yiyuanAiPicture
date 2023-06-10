@@ -1,28 +1,18 @@
-// pages/account/account.ts
-const app = getApp<IAppOption>();
-
+// pages/register/register.ts
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-      userInfo:app.globalData.userInfo
+
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad() {
-      this.setData({
-        userInfo:app.globalData.userInfo
-      })
-    },
-      // 事件处理函数
-    bindDrawTap() {
-        wx.navigateTo({
-            url: '/pages/historyDraw/historyDraw',
-        })
+
     },
 
     /**
@@ -36,11 +26,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-        if (typeof this.getTabBar === 'function' && this.getTabBar()) {
-            this.getTabBar().setData({
-                selected: 3
-            })
-        }
+
     },
 
     /**

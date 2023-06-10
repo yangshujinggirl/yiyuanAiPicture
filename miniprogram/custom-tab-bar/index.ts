@@ -1,3 +1,5 @@
+const app = getApp<IAppOption>();
+
 Component({
     data: {
       selected: 0,
@@ -29,12 +31,30 @@ Component({
     },
     methods: {
       switchTab(e) {
-        const data = e.currentTarget.dataset
-        const url = data.path
-        wx.switchTab({url})
-        this.setData({
-          selected: data.index
-        })
+        console.log('app',app.globalData)
+        if(!app.globalData.token) {
+            wx.showModal({
+                title: '您还未登录',
+                content: '点击登录按钮，即可享受服务',
+                success (res) {
+                  if (res.confirm) {
+                    wx.navigateTo({
+                        url:"/pages/login/login"
+                    })
+                  } else if (res.cancel) {
+                    console.log('用户点击取消')
+                  }
+                }
+              })
+        } else {
+            const data = e.currentTarget.dataset
+            console.log('data',data)
+            const url = data.path
+            this.setData({
+            selected: data.index
+            })
+            wx.switchTab({url})
+        }
       }
     }
   })
