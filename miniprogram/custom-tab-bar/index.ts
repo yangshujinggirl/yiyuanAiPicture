@@ -9,30 +9,34 @@ Component({
         pagePath: "/pages/index/index",
         iconPath: "../assets/icon_tabbar0.png",
         selectedIconPath: "../assets/icon_tabbar00.png",
-        text: "首页"
+        text: "首页",
       }, {
         pagePath: "/pages/toPicture/toPicture",
         iconPath: "../assets/icon_tabbar1.png",
         selectedIconPath: "../assets/icon_tabbar11.png",
-        text: "图转图"
+        text: "图转图",
+        isToken:true
       },{
         pagePath: "/pages/textToPicture/textToPicture",
         iconPath: "../assets/icon_tabbar2.png",
         selectedIconPath: "../assets/icon_tabbar22.png",
-        text: "文字转图"
+        text: "文字转图",
+        isToken:true
       },{
         pagePath: "/pages/account/account",
         iconPath: "../assets/icon_tabbar3.png",
         selectedIconPath: "../assets/icon_tabbar33.png",
-        text: "我的"
+        text: "我的",
+        isToken:true
       }]
     },
     attached() {
     },
     methods: {
       switchTab(e) {
-        console.log('app',app.globalData)
-        if(!app.globalData.token) {
+        const tokens = wx.getStorageSync("token");
+        const data = e.currentTarget.dataset;
+        if(!tokens && data.tabitem.isToken) {
             wx.showModal({
                 title: '您还未登录',
                 content: '点击登录按钮，即可享受服务',
@@ -47,11 +51,9 @@ Component({
                 }
               })
         } else {
-            const data = e.currentTarget.dataset
-            console.log('data',data)
             const url = data.path
             this.setData({
-            selected: data.index
+                selected: data.index
             })
             wx.switchTab({url})
         }

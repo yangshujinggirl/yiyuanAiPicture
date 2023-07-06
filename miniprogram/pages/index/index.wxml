@@ -2,18 +2,20 @@
 <view class="home-container">
     <!-- 分类tab -->
     <view class="tab-list">
-        <scroll-view class="scroll-view_H" scroll-x="true" bindscroll="scroll" style="width: 100%; height: 68rpx;">
-            <text wx:for="{{tabList}}" wx:key="id" class="scroll-view-item_w {{item.id === activityKey?'activity':''}}" key="item.id" bindtap="switchTab" data-tabId="{{item.id}}">{{item.title}}</text>
+        <scroll-view class="scroll-view_W" scroll-x="true" bindscroll="scroll" style="height: 68rpx;">
+            <text wx:for="{{tabList}}" wx:key="id" class="scroll-view-item_w {{item.tmpValue === activityKey?'activity':''}}" key="item.tmpValue" bindtap="switchTab" data-tabId="{{item.tmpValue}}">{{item.tmpName}}</text>
         </scroll-view>
     </view>
     <!-- 列表 -->
-    <view class="list-wrap">
-        <view class="item-wrap" wx:for="{{list}}" wx:key="index" data-id="{{item.id}}" bindtap="bindInfoTap">
+    <view class="list-wrap" wx:if="{{list.length > 0}}">
+        <view class="item-wrap" wx:for="{{list}}" wx:key="index" 
+        data-currentPage="{{item.currentPage}}"
+        data-id="{{item.id}}" bindtap="bindInfoTap">
             <image class="bg-img" mode="scaleToFill" src="{{item.result_img}}"></image> 
             <view class="info-bottom">
                 <view class="ib-item">
                     <image class="icon-img" mode="scaleToFill" src="../../assets/bg.png"></image> 
-                    <text>{{item.title}}</text>
+                    <text>{{item.username}}</text>
                 </view>
                 <view class="ib-item">
                     <image class="icon-img" mode="scaleToFill" src="../../assets/icon_look.png"></image> 
@@ -25,5 +27,9 @@
                 </view>
             </view>
         </view>
+    </view>
+    <view class="noData-wrap" wx:else>
+        <image class="nodata-img" mode="scaleToFill" src="../../assets/account_noData.png"></image> 
+        <view>暂无数据</view>
     </view>
 </view>

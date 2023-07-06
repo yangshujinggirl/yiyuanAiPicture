@@ -1,2 +1,3 @@
-<!--pages/textToPicture/textToPicture.wxml-->
-<text>pages/textToPicture/textToPicture.wxml</text>
+<view>
+    <create-picture page-type="t2p" />
+</view>

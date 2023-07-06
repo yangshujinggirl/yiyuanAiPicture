@@ -3,10 +3,20 @@ page {
 }
 .home-container {
     height: 100%;
-    padding: 0 32px 100px;
+    padding: 0 24rpx 100rpx;
     background:#1A1A1A;
+    box-sizing: border-box;
     .tab-list {
-        padding: 100rpx 0 20rpx 0;
+        width: 100%;
+        padding: 110rpx 210rpx 20rpx 24rpx;
+        box-sizing: border-box;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background:#1A1A1A;
+        .scroll-view_W{
+            white-space: nowrap;
+        }
         .scroll-view-item_w {
             font-size: 28rpx;
             line-height: 1;
@@ -80,6 +90,18 @@ page {
                 color: #999;
             }
          
+        }
+    }
+    .noData-wrap {
+        // background: #444;
+        color: #fff;
+        text-align: center;
+        font-size: 24rpx;
+        padding: 360rpx 0 60rpx;
+        .nodata-img {
+            width: 200rpx;
+            height: 200rpx;
+            margin-bottom: 40rpx;
         }
     }
     

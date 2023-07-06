@@ -8,8 +8,6 @@ interface IParamsProps {
 }
 //统一的网络请求方法
 function request(params:IParamsProps) {
-  // 全局变量
-//   var globalData = getApp().globalData;
   return new Promise((resolve,reject)=> {
     wx.request({
         url: domain + params.url, //接口请求地址
@@ -24,10 +22,18 @@ function request(params:IParamsProps) {
             if (res.statusCode == 200) {
                 resolve(res.data);
             } else if(res.statusCode == 403){
-                getToken();
-            } else if (res.statusCode == 500) {
+                wx.navigateTo({
+                    url:"/pages/login/login"
+                })
+            } else if(res.statusCode == 400){
                 wx.showToast({
-                    title: "服务器出了点小差",
+                    title: res.data.msg,
+                    icon: "none"
+                });
+                reject(res.data)
+            }else {
+                wx.showToast({
+                    title: "糟糕～服务器出了点小差",
                     icon: "none"
                 });
                 reject(res.data)
@@ -44,29 +50,6 @@ function request(params:IParamsProps) {
     })
   })
 
-}
-
-//通过code获取token,并保存到缓存
-var getToken = function() {
-  const globalData = getApp().globalData;
-  globalData.userInfo = {};
-  wx.login({
-    success: res => {
-      // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      request({
-        login: true,
-        method: "POST",
-        url: '/imgai/zeus/login',
-        data: {
-          code: res.code
-        }
-      }).then((res: { data:{ token:string; userinfo:{[x:string]:any} }})=> {
-        globalData.token = res.data.token;
-        globalData.userInfo = res.data.userinfo;
-        wx.setStorageSync('token', res.data.token)
-      })
-    }
-  })
 }
 export {
     request,

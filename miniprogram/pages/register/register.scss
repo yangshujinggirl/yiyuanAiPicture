@@ -1,12 +1,44 @@
 .register-wrap {
-  padding: 24rpx;
-  .weui-input {
     width: 100%;
-    height: 100rpx;
-    margin: 0 auto 30rpx;
-    background-color: #333;
-    border-radius: 10rpx;
-    padding: 0 0 0 10rpx;
+    padding: 60rpx 4% 20rpx;
     box-sizing: border-box;
-  }
+    text-align: center;
+    .imgCode-wrap {
+        display: flex;
+        justify-content: space-between;
+        .img-input {
+            width: 66%;
+        }
+        .img-btn {
+            width: 30%;
+            flex-shrink: 0;
+            font-size: 26rpx;
+        }
+    }
+    .logo-img {
+        width: 160rpx;
+        height: 160rpx;
+        margin-bottom: 60rpx;
+    }
+    view {
+        width: 100%;
+    }
+    .proto-wrap {
+        padding: 0 0 20rpx;
+        box-sizing: border-box;
+        display: flex;
+        font-size: 24rpx;
+        color: #fff;
+        text-align: left;
+        .wx-checkbox-input {
+            width: 30rpx;
+            height: 30rpx;
+        }
+        .txt {
+            padding-left: 10rpx;
+        }
+    }
+    .btn-wrap {
+        padding: 40rpx 0 20rpx;
+    }
 }

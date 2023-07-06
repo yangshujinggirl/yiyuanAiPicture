@@ -1,11 +1,17 @@
 // pages/register/register.ts
+import {request, domain} from '../../utils/http';
+
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-
+        phone: '',
+        password: '',
+        confirmPassword: '',
+        code:"",
+        isAgree:false,
     },
 
     /**
@@ -27,6 +33,55 @@ Page({
      */
     onShow() {
 
+    },
+    formSubmit(e) {
+        this.setData({chosen:e.detail.value})
+        this.submit();
+    },
+    formReset(e) {
+        this.setData({
+            chosen: ''
+        })
+    },
+    submit(){
+        const { phone,password,confirmPassword,code } = this.data;
+        request({
+            url:"/imgai/zeus/register",
+            data:{phone,password,confirmPassword,code},
+            method:"POST"
+        }).then((res)=>{
+            if(res?.code ===200) {
+                const globalData = getApp().globalData;
+                globalData.token = res.data.token;
+                globalData.userInfo = res.data;
+                wx.setStorageSync('token', res.data.token)
+                wx.switchTab({
+                    url:'/pages/index/index'
+                })
+            }
+        }).catch((err)=> {
+            console.log(err)
+        })
+    },
+    getImgCode(){
+        const { phone } =this.data;
+        const that=this;
+        request({
+            url:"/imgai/zeus/sms/",
+            data:{phone},
+            method:"GET"
+        }).then((res)=>{
+            if(res?.code ===200) {
+                that.setData({code:res.data.code})
+            }
+        }).catch((err)=> {
+            console.log(err)
+        })
+    },
+    switchPages(){
+        wx.navigateTo({
+            url:"/pages/protocol/protocol"
+        })
     },
 
     /**

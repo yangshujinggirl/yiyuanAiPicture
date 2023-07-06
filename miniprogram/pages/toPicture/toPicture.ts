@@ -47,8 +47,8 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad() {
-
+    onLoad(props) {
+        console.log('props',props)
     },
     bindKeyInput: function (e) {
         this.setData({
@@ -96,23 +96,6 @@ Page({
         }).catch((err)=> {
             console.log(err)
         })
-      },
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow() {
-        if (typeof this.getTabBar === 'function' && this.getTabBar()) {
-            this.getTabBar().setData({
-                selected: 1
-            })
-        }
     },
     uoloadFile:function(e) {
         const _this = this;
@@ -145,6 +128,23 @@ Page({
             })
           }
         })
+    },
+    /**
+     * 生命周期函数--监听页面初次渲染完成
+     */
+    onReady() {
+
+    },
+
+    /**
+     * 生命周期函数--监听页面显示
+     */
+    onShow() {
+        if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+            this.getTabBar().setData({
+                selected: 1
+            })
+        }
     },
 
     /**

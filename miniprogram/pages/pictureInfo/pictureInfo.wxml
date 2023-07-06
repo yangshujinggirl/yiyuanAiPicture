@@ -1,24 +1,46 @@
 <!--pages/pictureInfo/pictureInfo.wxml-->
 <view class="picture-page-wrap">
-    <image class="main-picture" mode="scaleToFill" src="../../assets/cat.jpg"></image>
-    <view class="fixed-action">
-        <view class="user-wrap">
-            <image class="user-avatar" mode="scaleToFill" src="../../assets/cat.jpg"></image> 
-                <view>用户名字</view>
-        </view>
-        <view class="footer-action">
-            <view class="fa-item">
-                <image class="icon-action" mode="scaleToFill" src="../../assets/icon_like.png"></image> 
-                <view>喜欢</view>
+    <swiper class="listbox" current="{{currentIndex}}">
+        <block wx:for="{{list}}" wx:key="*this">
+          <swiper-item>
+            <view class="swiper-item">
+                <image class="main-picture" mode="scaleToFill" src="{{item.result_img||item.source_img}}"></image>
+                <view class="fixed-action">
+                    <view class="user-wrap">
+                        <image class="user-avatar" mode="scaleToFill" src="../../assets/cat.jpg"></image> 
+                            <view>{{item.username}}</view>
+                    </view>
+                    <view class="footer-action">
+                        <view class="fa-item" bindtap="submitLike" data-orderId="{{item.id}}">
+                            <view class="like-wrap">
+                                <image class="icon-action animation-high" mode="scaleToFill" src="../../assets/icon_like_high.png"  wx:if="{{item.like_status}}"></image>  
+                                <image class="icon-action" mode="scaleToFill" src="../../assets/icon_like.png" wx:else></image>
+                            </view>
+                            <view>喜欢</view>
+                        </view>
+                        <button type="primary" class="btn-wrap" data-order="{{item}}" bindtap="submitDownload">
+                                <image class="icon-img" mode="scaleToFill" src="../../assets/icon_down_svg.svg"></image> 
+                                <text>下载</text>
+                        </button>
+                        <view class="fa-item" bindtap="getInfo" data-sd="{{item.sd_data}}">
+                            <image class="icon-action" mode="scaleToFill" src="../../assets/icon_more.png"></image> 
+                            <view>详情</view>
+                        </view>
+                    </view>
+                </view>
             </view>
-            <button type="primary" class="btn-wrap">
-                    <image class="icon-img" mode="scaleToFill" src="../../assets/icon_down_svg.svg"></image> 
-                    <text>下载</text>
-            </button>
-            <view class="fa-item">
-                <image class="icon-action" mode="scaleToFill" src="../../assets/icon_more.png"></image> 
-                <view>详情</view>
+          </swiper-item>
+        </block>
+    </swiper>
+    <view class="info-dialog-wrap {{visible?'show':''}}" bindtap="closeInfo">
+    <view class="pic-title">图片详情</view>
+    <view class="main-content">
+        <view>
+            <view wx:for="{{infoKeyList}}" wx:for-item="ele" class="key-item">
+                <view class="label">{{ele.label}}：</view>
+                <view>{{currentPicSd[ele.key]}}</view>
             </view>
         </view>
+    </view>
     </view>
 </view>

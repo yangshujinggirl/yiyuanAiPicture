@@ -1,5 +1,16 @@
+page {
+    height: 100%;
+}
 .picture-page-wrap {
-    padding: 32rpx;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    .listbox {
+        height: 100%;
+        .swiper-item {
+            padding: 32rpx 24rpx;
+        }
+    }
     .main-picture {
         width: 100%;
         height: 876rpx;
@@ -43,6 +54,16 @@
                 line-height: 50rpx;
             }
         }
+        .like-wrap {
+            width: 48rpx;
+            height: 48rpx;
+            // position: relative;
+            // .animation-high {
+            //     position: absolute;
+            //     top: 0;
+            //     left: 0;
+            // }
+        }
         .icon-action {
             width: 48rpx;
             height: 48rpx;
@@ -62,6 +83,48 @@
                 height: 48rpx;
                 margin-right: 10rpx;
             }
+        }
+    }
+    .info-dialog-wrap {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        transform: translateY(100%);
+        border-radius: 10rpx;
+        background-color: rgba(255,255,255,1);
+        box-sizing: border-box;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition: all 1s;
+        padding-bottom: 60rpx;
+        .pic-title {
+            padding: 24rpx;
+            font-size: 36rpx;
+            text-align: center;
+            border-bottom: 2rpx solid #ccc;
+        }
+        .main-content {
+            padding: 24rpx;
+            overflow-y: auto;
+            flex: 1;
+            height: 0;
+            .key-item {
+                display: flex;
+                color: #666;
+                padding: 10rpx 0;
+                .label {
+                    font-size: 32rpx;
+                    color: #333;
+                }
+            }
+        }
+        &.show {
+            transform:translateY(0)
+        }
+        &.hide {
+            transform:translateY(100%)
         }
     }
 }

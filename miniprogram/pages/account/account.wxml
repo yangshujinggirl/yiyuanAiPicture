@@ -4,7 +4,7 @@
         <view class="base-info-wrap">
             <view class="fx-lf">
                 <view class="avatar-wrap">
-                    <image class="icon-solid" mode="scaleToFill" src="../../assets/account_icon1.png"></image>
+                    <image class="icon-solid" mode="scaleToFill" src="{{userInfo.avatar || defaultAvatar}}"></image>
                     <image class="icon-edit" mode="scaleToFill" src="../../assets/account_icon0.png"></image>
                 </view>
                 <view class="info-wrap">
@@ -13,17 +13,17 @@
                         <image class="icon-vip" mode="scaleToFill" src="../../assets/account_vip_icon.png"></image>
                     </view>
                     <!-- <view class="row2">每个人都有快乐的时候，你呢</view> -->
-                    <text>ID: {{userInfo.user_id}}</text>
-                    <view>积分: {{userInfo.user_id}}</view>
+                    <text>ID: {{userInfo.uid}}</text>
+                    <view>积分: {{userInfo.coin}}</view>
                 </view>
             </view>
             <view>
-                <image class="icon-set" mode="scaleToFill" src="../../assets/icon_download.png"></image>
+                <image class="icon-set" mode="scaleToFill" src="../../assets/icon_download.png" bindtap="bindToSet"></image>
             </view>
         </view>
         <view class="data-Analysis-action">
-            <view class="item"><text class="high">999</text>下载</view>
-            <view class="item"><text class="high">999</text>喜欢</view>
+            <view class="item"><text class="high">{{userInfo.like_count}}</text>下载</view>
+            <view class="item"><text class="high">{{userInfo.download_count}}</text>喜欢</view>
         </view>
     </view>
     <view class="part-middle-wrap">
@@ -40,78 +40,25 @@
     <view class="my-works-wrap">
         <view class="head">我的作品</view>
         <view class="works-list">
-            <view class="same-type-wrap">
-                <view class="list">
-                    <view class="pic-item" >
-                        <image mode="scaleToFill" src="../../assets/bg.png"></image> 
-                    </view>
-                    <view class="pic-item" >
-                        <image mode="scaleToFill" src="../../assets/bg.png"></image> 
-                    </view>
-                    <view class="pic-item" >
-                        <image mode="scaleToFill" src="../../assets/bg.png"></image> 
-                    </view>
-                    <view class="pic-item" >
-                        <image mode="scaleToFill" src="../../assets/bg.png"></image> 
-                    </view>
-                </view>
-                <view class="ft">
-                    <view class="type-name">动漫</view>
-                    <view>共999张</view>
-                </view>
-            </view>
-            <view class="same-type-wrap two-wrap">
-                <view class="list">
-                    <view class="pic-item" >
-                        <image mode="scaleToFill" src="../../assets/bg.png"></image> 
-                    </view>
-                    <view class="pic-item" >
-                        <image mode="scaleToFill" src="../../assets/bg.png"></image> 
+            <block wx:for="{{list}}">
+                <view class="same-type-wrap wrap{{item.list.length}}" data-tempVal="{{item.tmpValue}}" data-tempName="{{item.tmpName}}" bindtap="handleMyCreat" >
+                    <block wx:if="{{item.list.length > 0}}">
+                        <view class="list">
+                            <view class="pic-item" wx:for="{{item.list}}" wx:for-item="el">
+                                <image mode="scaleToFill" src="{{el.result_img || el.source_img}}"></image> 
+                            </view>
+                        </view>
+                        <view class="ft">
+                            <view class="type-name">{{item.tmpName}}</view>
+                            <view>共{{item.total}}张</view>
+                        </view>
+                    </block>
+                    <view class="noData-wrap" wx:else>
+                        <image class="nodata-img" mode="scaleToFill" src="../../assets/account_noData.png"></image> 
+                        <view>暂无数据</view>
                     </view>
                 </view>
-                <view class="ft">
-                    <view class="type-name">动漫</view>
-                    <view>共999张</view>
-                </view>
-            </view>
-            <view class="same-type-wrap thr-wrap">
-                <view class="list">
-                    <view class="pic-item" >
-                        <image mode="scaleToFill" src="../../assets/bg.png"></image> 
-                    </view>
-                    <view class="pic-item pic-item2" >
-                        <image mode="scaleToFill" src="../../assets/bg.png"></image> 
-                    </view>
-                    <view class="pic-item" >
-                        <image mode="scaleToFill" src="../../assets/bg.png"></image> 
-                    </view>
-                </view>
-                <view class="ft">
-                    <view class="type-name">动漫</view>
-                    <view>共999张</view>
-                </view>
-            </view>
-            <view class="same-type-wrap one-wrap">
-                <view class="list">
-                    <view class="pic-item" >
-                        <image mode="scaleToFill" src="../../assets/bg.png"></image> 
-                    </view>
-                </view>
-                <view class="ft">
-                    <view class="type-name">动漫</view>
-                    <view>共999张</view>
-                </view>
-            </view>
-            <view class="same-type-wrap one-wrap">
-                <view class="noData-wrap">
-                    <image class="nodata-img" mode="scaleToFill" src="../../assets/account_noData.png"></image> 
-                    <view>暂无数据</view>
-                </view>
-                <view class="ft">
-                    <view class="type-name">动漫</view>
-                    <view>共0张</view>
-                </view>
-            </view>
+            </block>
         </view>
     </view>
 </view>

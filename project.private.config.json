@@ -3,7 +3,7 @@
     "projectname": "ai-toPicture",
     "setting": {
         "compileHotReLoad": true,
-        "urlCheck": false
+        "urlCheck": true
     },
     "libVersion": "2.32.0"
 }

@@ -1,14 +1,21 @@
 .history-draw-pages-wrap {
-    padding: 0 32rpx 0;
+    padding: 0 24rpx 0;
     .tab-list {
+        width: 100%;
         display: flex;
         justify-content: center;
-        margin-bottom: 52rpx;
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 999;
+        box-sizing: border-box;
+        font-size: 0;
+        background:#1A1A1A;
         .scroll-view-item_w {
             font-size: 32rpx;
             line-height: 1;
             color: #999;
-            padding: 36rpx 20rpx 10rpx;
+            padding: 24rpx 24rpx 24rpx;
             &.activity {
                 color: #87F1BC;
                 position: relative;
@@ -31,6 +38,7 @@
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
+        padding-top: 100rpx;
         .item-wrap {
             width: 49%;
             height: 336rpx;

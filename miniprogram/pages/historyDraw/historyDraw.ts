@@ -6,6 +6,7 @@ Page({
      * 页面的初始数据
      */
     data: {
+        defaultImg:"../../assets/account_bg.png",
         activityKey:"0",
         tabList:[
             {
@@ -26,27 +27,45 @@ Page({
                 id:"5",
             },
         ],
-        list:[]
+        list:[],
+        tempVal:"",
+        currentPage:1,
+        totalPage:0,
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(e) {
+        console.log(e)
+        if(e.tempVal) {
+            wx.setNavigationBarTitle({
+                title: `${e.tempName}绘图`
+              })
+            this.setData({tempVal:e.tempVal,tempName:e.tempName})
+        }
+      
         this.setData({ activityKey:e.type || "99"})
         this.fetchList()
     },
     switchTab(e) {
         const data = e.currentTarget.dataset
         this.setData({
-            activityKey: data.tabid
+            activityKey: data.tabid,
+            list:[],
         })
         this.fetchList()
     },
-    fetchList(){
-        const {activityKey} = this.data;
+    fetchList(pageNum?:number){
+        wx.showLoading({
+            title: '加载中',
+        })
+        const {activityKey,tempVal} = this.data;
+        const currentPage  = pageNum || this.data.currentPage; 
         const params:{[x:string]:any} = {
-            order_type:activityKey==="99"?"":activityKey
+            order_type:activityKey==="99"?"":activityKey,
+            tempVal,
+            page_number:currentPage
         };
 
         request({
@@ -55,11 +74,36 @@ Page({
             method:"GET",
         }).then((res)=>{
             if(res?.code ===200) {
-                this.setData({ list:res.data?.list })
+                const newArr = res.data?.list.map((el)=>({...el, currentPage:res.data.page_number}))
+                this.setData({ 
+                    list:[...this.data.list,...newArr],
+                    currentPage:res.data.page_number,
+                    totalPage:Math.ceil(res.data.total/res.data.page_size)
+               })
             }
+            wx.hideLoading();
         }).catch((err)=> {
             console.log(err)
         })
+    },
+    onRefresh(){
+        this.setData({list:[]})
+        this.fetchList(1)
+      },
+      onPullDownRefresh(){
+          this.onRefresh();
+      },
+      onReachBottom(){
+        let { currentPage, totalPage } =this.data;
+        currentPage++;
+        if( currentPage > totalPage) {
+            wx.showToast({
+                type:"none",
+                title:"没有更多数据了哦～"
+            })
+            return;
+        }
+        this.fetchList(currentPage)
       },
 
     /**
@@ -86,20 +130,6 @@ Page({
      * 生命周期函数--监听页面卸载
      */
     onUnload() {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh() {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom() {
 
     },
 

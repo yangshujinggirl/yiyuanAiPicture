@@ -1,4 +1,5 @@
 {
     "usingComponents": {},
-    "navigationBarTitleText":"图片详情"
+    "navigationBarTitleText":"图片详情",
+    "backgroundColor":"#1a1a1a"
 }

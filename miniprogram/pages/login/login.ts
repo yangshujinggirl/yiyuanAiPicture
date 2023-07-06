@@ -5,8 +5,10 @@ import {request} from '../../utils/http';
 Page({
   data: {
     password:"",
-    account:"",
-    isUsePassword:false
+    phone:"",
+    isUsePassword:false,
+    isAgree:false,
+    code:"",
   },
   // 事件处理函数
   bindViewTap() {
@@ -15,54 +17,100 @@ Page({
     })
   },
   onLoad() {
-    // @ts-ignore
-    if (wx.getUserProfile) {
-      this.setData({
-        canIUseGetUserProfile: true
-      })
+
+  },
+  validateForm(){
+    const { phone, code } =this.data;
+    const regCode =/^\d{4}/;
+    const regPhone = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/; 
+    if(!regPhone.test(phone)) {
+        wx.showToast({
+            title:"输入正确的手机",
+            icon:"error",
+            duration:2000
+        })
+        return false;
+    }else if(!regCode.test(code)) {
+        wx.showToast({
+            title:"输入4位验证码",
+            icon:"error",
+            duration:2000
+        })
+        return false
+    } else {
+        return true;
     }
   },
-  getPhoneNumber (e) {
-    console.log(e.detail)
-  },
-  getUsePassword(){
-    this.setData({ isUsePassword:true })
-  },
-  bindKeyPhone: function (e) {
-    this.setData({
-      account: e.detail.value
+  handleWeinxinLogin () {
+    if(!this.data.isAgree) {
+        wx.showToast({
+            title:"请勾选协议",
+            icon:"error"
+        })
+        return;
+    }
+    const that = this;
+    wx.login({
+        success (res) {
+          if (res.code) {
+            //发起网络请求
+            that.fetchLogin({ wx: res.code })
+          } else {
+            console.log('登录失败！' + res.errMsg)
+          }
+        }
     })
   },
-  bindKeyPassword: function (e) {
-    this.setData({
-      password: e.detail.value
-    })
+  handlePhoneLogin(){
+    const { phone, code } =this.data;
+    if(!this.validateForm()) {
+        return;
+    }
+    this.fetchLogin({phone, code})
   },
-  handleLogin(){
-    const { account, password } =this.data
+  togglePhoneLogin(){
+    this.setData({ isUsePassword:!this.data.isUsePassword })
+  },
+  fetchLogin(params){
     request({
-      url:"/imgai/zeus/login/",
-      data:{ account, password },
+        url:"/imgai/zeus/register/",
+        data:params,
+        method:"POST"
+      }).then((res)=>{
+        if(res?.code ===200) {
+          const globalData = getApp().globalData;
+          globalData.token = res.data.token;
+          globalData.userInfo = res.data;
+          wx.setStorageSync('token', res.data.token)
+            wx.switchTab({
+              url:'/pages/index/index'
+            })
+        }
+      }).catch((err)=> {
+          console.log(err)
+      })
+  },
+  getImgCode(){
+    const { phone } =this.data;
+    const that = this;
+    if(!this.validateForm()) {
+        return;
+    }
+    request({
+        url:"/imgai/zeus/sms/",
+        data:{phone},
+        method:"GET"
     }).then((res)=>{
-      if(res?.code ===200) {
-        const globalData = getApp().globalData;
-        globalData.token = res.data.token;
-        globalData.userInfo = res.data.userinfo;
-        wx.setStorageSync('token', res.data.token)
-          wx.switchTab({
-            url:'/pages/index/index'
-          })
-      }
+        if(res?.code ===200) {
+            that.setData({code:res.data.code})
+        }
     }).catch((err)=> {
         console.log(err)
     })
-  },
+},
   goRegister(){
     wx.redirectTo({
       url:'/pages/register/register'
     })
   },
-  handleAutoPhone(){
-    this.setData({ isUsePassword:false })
-  }
 })

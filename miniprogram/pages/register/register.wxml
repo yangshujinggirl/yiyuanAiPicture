@@ -1,4 +1,21 @@
-<view class="register-wrap">
-  <input class="weui-input"  type="text" bindinput="bindKeyPassword"  placeholder="请输入手机号"  model:value="{{account}}"/>
-  <input class="weui-input"  password type="text" bindinput="bindKeyPassword"  placeholder="请输入密码"  model:value="{{password}}"/>
+<view class="container register-wrap">
+    <image class="logo-img" mode="scaleToFill" src="../../assets/logo.png"></image>
+    <view>
+        <input class="picture-input"  type="text"  placeholder="请输入手机号"   model:value="{{phone}}"/>
+        <input class="picture-input"  password type="text" placeholder="请输入密码"  model:value="{{password}}"/>
+        <input class="picture-input"  password type="text" placeholder="请输入确认密码" model:value="{{confirmPassword}}"/>
+        <view class="imgCode-wrap">
+            <input class="img-input picture-input"   type="text"   placeholder="请输入验证码" model:value="{{code}}"/>
+            <button  class="img-btn picture-btn" disabled="{{!phone}}" bindtap="getImgCode"> 获取验证码 </button>
+        </view>
+        <view class="proto-wrap">
+            <label class="checkbox">
+                <checkbox model:checked="{{isAgree}}"/>
+            </label>
+            <view class="txt">我已阅读并同意<text class="themeLinearColor" bindtap="switchPages">{{"<<"}}隐私条款{{">>"}}</text>和<text class="themeLinearColor" bindtap="switchPages">{{"<<"}}用户协议{{">>"}}</text></view>
+        </view>
+        <view class="btn-wrap">
+            <button  class="picture-btn" bindtap="submit" disabled="{{!isAgree}}"> 注册 </button>
+        </view>
+    </view>
 </view>

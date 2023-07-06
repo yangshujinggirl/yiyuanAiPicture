@@ -1,0 +1,27 @@
+<!--index.wxml-->
+<view class="container account-center">
+    <button  class="avatar-wrap"open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+        <image class="logo-img" mode="scaleToFill" src="{{userInfo.avatar || defaultAvatar}}"></image>
+        <view class="txt">更换</view>
+    </button> 
+    <view wx:if="{{!isChange}}">
+        <view class="set-list">
+            <view class="item-wrap">
+                <view class="label">昵称</view>
+                <view class="value" bindtap="changeName">{{userInfo.username}} {{'>'}}</view>
+            </view>
+            <view class="item-wrap">
+                <view class="label">手机号</view>
+                <view class="value">{{userInfo.phone}}</view>
+            </view>
+        </view>
+        <button class="picture-btn" bindtap="handlePhoneLogin">退出登录</button>
+    </view>
+    <view class="authorization-wrap" wx:else>
+        <input type="nickname" model:value="{{nickname}}" class="picture-input weui-input" placeholder="请输入昵称"/>
+        <view class="btn-list">
+            <button class="border-picture-btn" bindtap="onCancel">取消</button>
+            <button class="picture-btn" bindtap="onSaveName">确定</button>
+        </view>
+    </view>
+</view>

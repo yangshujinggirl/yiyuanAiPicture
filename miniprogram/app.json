@@ -10,7 +10,10 @@
         "pages/textToPicture/textToPicture",
         "pages/historyDraw/historyDraw",
         "pages/creatPicture/creatPicture",
-        "pages/register/register"
+        "pages/register/register",
+        "pages/protocol/protocol",
+        "pages/settingCenter/settingCenter",
+        "pages/authorization/authorization"
     ],
     "window": {
         "backgroundTextStyle": "light",

@@ -1,13 +1,16 @@
 // pages/account/account.ts
 const app = getApp<IAppOption>();
-
+import {request} from '../../utils/http';
+import { fetchFormatUserInfo } from '../../api/commonApi';
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-      userInfo:app.globalData.userInfo
+      userInfo:app.globalData.userInfo,
+      defaultAvatar:"../../assets/account_icon1.png",
+      list:[]
     },
 
     /**
@@ -17,12 +20,50 @@ Page({
       this.setData({
         userInfo:app.globalData.userInfo
       })
+      this.fetchList();
+      this.getUserInfo()
+    },
+       // 事件处理函数
+    bindToSet() {
+        wx.navigateTo({
+            url: '/pages/settingCenter/settingCenter',
+        })
     },
       // 事件处理函数
     bindDrawTap() {
         wx.navigateTo({
             url: '/pages/historyDraw/historyDraw',
         })
+    },
+    handleMyCreat(e) {
+        const data = e.currentTarget.dataset
+        wx.navigateTo({
+            url: `/pages/historyDraw/historyDraw?tempVal=${data.tempval}&tempName=${data.tempname}`,
+        })
+    },
+    fetchList(){
+        const that = this;
+        request({
+            url:"/imgai/zeus/temporderlist/",
+            method:"GET",
+            data:{}
+        }).then((res)=> {
+            console.log('res',res)
+            if(res.code === 200) {
+                that.setData({
+                    list:res.data?.data||[]
+                })
+            }
+        })
+        
+    },
+    getUserInfo(){
+        const that = this;
+        fetchFormatUserInfo((res)=>{
+            that.setData({
+                userInfo:res
+            })
+        });
     },
 
     /**

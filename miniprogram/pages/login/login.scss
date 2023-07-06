@@ -1,41 +1,58 @@
 /* pages/login/login.wxss */
 .container {
-  view {
     width: 100%;
-  }
-  .weui-input {
-    width: 90%;
-    height: 100rpx;
-    margin: 0 auto 30rpx;
-    background-color: #fff;
-    border-radius: 10rpx;
-    padding: 0 0 0 10rpx;
+    padding: 160rpx 4% 20rpx;
     box-sizing: border-box;
-  }
+    text-align: center;
+    view {
+        width: 100%;
+    }
     .logo-img {
         width: 160rpx;
         height: 160rpx;
         margin-bottom: 60rpx;
     }
-    .btn1,.btn2 {
-        width: 90%;
-        line-height: 100rpx;
-        height: 100rpx;
+    .imgCode-wrap {
+        display: flex;
+        justify-content: space-between;
+        .img-input {
+            width: 66%;
+        }
+        .img-btn {
+            width: 30%;
+            flex-shrink: 0;
+            font-size: 26rpx;
+        }
+    }
+    .btn1 {
         color: #fff;
         padding: 0;
     }
     .btn1 {
         background: #3cc51f;
         margin-bottom: 30rpx;
-    }
-    .btn2 {
-        background: linear-gradient(135deg, #6EFFF7 0%, #87F1BC 100%);
+        border-radius: 16rpx;
     }
     .bottom-handle {
-      width: 90%;
+      width: 100%;
       margin: 30rpx auto 0;
       display: flex;
       justify-content: space-between;
       color: #fff;
+    }
+    .proto-wrap {
+        padding: 40rpx 0 20rpx;
+        box-sizing: border-box;
+        display: flex;
+        font-size: 24rpx;
+        color: #fff;
+        text-align: left;
+        .wx-checkbox-input {
+            width: 30rpx;
+            height: 30rpx;
+        }
+        .txt {
+            padding-left: 10rpx;
+        }
     }
 }

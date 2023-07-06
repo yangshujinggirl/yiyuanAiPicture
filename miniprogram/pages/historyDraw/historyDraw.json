@@ -1,4 +1,6 @@
 {
     "usingComponents": {},
-    "navigationBarTitleText":"历史绘图"
+    "navigationBarTitleText":"历史绘图",
+    "backgroundColor":"#1a1a1a",
+    "enablePullDownRefresh": true
 }
