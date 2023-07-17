@@ -1,8 +1,8 @@
 <!--pages/pictureInfo/pictureInfo.wxml-->
 <view class="picture-page-wrap">
-    <swiper class="listbox" current="{{currentIndex}}">
+    <swiper class="listbox" current="{{currentIndex}}" bindchange="handleSwiper">
         <block wx:for="{{list}}" wx:key="*this">
-          <swiper-item>
+          <swiper-item item-id="{{item.id}}">
             <view class="swiper-item">
                 <image class="main-picture" mode="scaleToFill" src="{{item.result_img||item.source_img}}"></image>
                 <view class="fixed-action">
@@ -38,7 +38,7 @@
         <view>
             <view wx:for="{{infoKeyList}}" wx:for-item="ele" class="key-item">
                 <view class="label">{{ele.label}}：</view>
-                <view>{{currentPicSd[ele.key]}}</view>
+                <view class="content">{{currentPicSd[ele.key]}}</view>
             </view>
         </view>
     </view>

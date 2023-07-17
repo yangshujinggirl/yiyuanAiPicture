@@ -18,11 +18,12 @@ page {
             white-space: nowrap;
         }
         .scroll-view-item_w {
+            display: inline-block;
+            height: 60rpx;
             font-size: 28rpx;
-            line-height: 1;
+            line-height:60rpx;
             color: #999;
             margin-right: 32rpx;
-            padding: 10rpx 0;
             &.activity {
                 color: #fff;
                 font-size: 34rpx;
@@ -41,20 +42,26 @@ page {
         }
     }
     .list-wrap {
-        display: flex;
-        justify-content: space-between;
-        align-content: flex-start;
-        flex-wrap: wrap;
-        align-items:self-start;
-        padding: 24rpx 0;
+        // display: flex;
+        // justify-content: space-between;
+        // align-content: flex-start;
+        // flex-wrap: wrap;
+        // align-items:self-start;
+        padding: 190rpx 0 24rpx;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        // grid-gap: ;
+        grid-auto-flow: row dense;
+        grid-auto-rows: 60rpx;
+        grid-gap: 20rpx;
         .item-wrap {
-            width: 48%;
+            width: 100%;
             background: #333;
-            margin-bottom: 16rpx;
+            // margin-bottom: 16rpx;
             border-radius: 8rpx;
             overflow: hidden;
             font-size: 0;
-            align-self: flex-start;
+            // align-self: flex-start;
             &:nth-child(even) {
                 // .bg-img {
                 //     height: 462rpx;
@@ -62,9 +69,24 @@ page {
             }
             .bg-img {
                 width: 100%;
-                height: 392rpx;
+                height: 320rpx;
                 border-radius: 8rpx;
                 overflow: hidden;
+            }
+            &:nth-of-type(3n+1) {
+                grid-row: auto / span 5;
+            }
+            &:nth-of-type(3n+2) {
+                grid-row: auto / span 6;
+                    .bg-img {
+                        height: 392rpx;
+                    }
+            }
+            &:nth-of-type(3n+3) {
+                grid-row: auto / span 5;
+                .bg-img {
+                    height: 320rpx;
+                }
             }
         }
         .info-bottom {

@@ -12,16 +12,31 @@ Page({
       defaultAvatar:"../../assets/account_icon1.png",
       list:[]
     },
-
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad() {
-      this.setData({
-        userInfo:app.globalData.userInfo
-      })
-      this.fetchList();
-      this.getUserInfo()
+        console.log('onLoad')
+        // this.setData({
+        //   userInfo:app.globalData.userInfo||{}
+        // })
+        // this.fetchList();
+        // this.getUserInfo()
+      },
+       /**
+     * 生命周期函数--监听页面显示
+     */
+    onShow() {
+        if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+            this.getTabBar().setData({
+                selected: 3
+            })
+        }
+        this.setData({
+            userInfo:app.globalData.userInfo||{}
+        })
+        this.fetchList();
+        this.getUserInfo()
     },
        // 事件处理函数
     bindToSet() {
@@ -71,17 +86,6 @@ Page({
      */
     onReady() {
 
-    },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow() {
-        if (typeof this.getTabBar === 'function' && this.getTabBar()) {
-            this.getTabBar().setData({
-                selected: 3
-            })
-        }
     },
 
     /**

@@ -42,21 +42,25 @@
         <view class="works-list">
             <block wx:for="{{list}}">
                 <view class="same-type-wrap wrap{{item.list.length}}" data-tempVal="{{item.tmpValue}}" data-tempName="{{item.tmpName}}" bindtap="handleMyCreat" >
-                    <block wx:if="{{item.list.length > 0}}">
-                        <view class="list">
+                    <block>
+                        <view class="list"  wx:if="{{item.list.length > 0}}">
                             <view class="pic-item" wx:for="{{item.list}}" wx:for-item="el">
                                 <image mode="scaleToFill" src="{{el.result_img || el.source_img}}"></image> 
                             </view>
+                        </view>
+                        <view class="noData-wrap" wx:else>
+                            <image class="nodata-img" mode="scaleToFill" src="../../assets/account_noData.png"></image> 
+                            <view>暂无数据</view>
                         </view>
                         <view class="ft">
                             <view class="type-name">{{item.tmpName}}</view>
                             <view>共{{item.total}}张</view>
                         </view>
                     </block>
-                    <view class="noData-wrap" wx:else>
+                    <!-- <view class="noData-wrap" wx:else>
                         <image class="nodata-img" mode="scaleToFill" src="../../assets/account_noData.png"></image> 
                         <view>暂无数据</view>
-                    </view>
+                    </view> -->
                 </view>
             </block>
         </view>

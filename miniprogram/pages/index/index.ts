@@ -2,12 +2,12 @@
 const app = getApp<IAppOption>();
 import {request} from '../../utils/http';
 import { fetchTemplate } from '../../api/commonApi';
-
+import { ResponseType } from './type';
 Page({
   data: {
     motto: 'Hello World',
     activityKey:'1',
-    tabList:[
+    fixedList:[
         {
             tmpName:"精选",
             tmpValue:'1',
@@ -16,28 +16,39 @@ Page({
             tmpValue:'2',
         }
     ],
-    list:[],
+    tabList:[],
+    dataList:[],
     currentPage:1,
     totalPage:0,
+    defaultImg:"../../assets/loading.webp"
   },
 
   onLoad() {
-    
+
+  },
+  onUnload: function() {
   },
   onShow(){
+    this.resetData();
     this.fetchList();
-    this.fetchTemplate();
+    this.fetchTemplateList();
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
             this.getTabBar().setData({
-            selected: 0
+                selected: 0
             })
     }
   },
+  resetData(){
+    this.setData({
+        dataList:[],
+        tabList:[]
+    })
+
+  },
     // 事件处理函数
   bindInfoTap(e) {
-      const { activityKey, currentPage } =this.data;
+      const { activityKey } =this.data;
       const data = e.currentTarget.dataset;
-      console.log('data',data,activityKey)
         wx.navigateTo({
             url: `/pages/pictureInfo/pictureInfo?currentImgId=${data.id}&tempValue=${activityKey}&currentPage=${data.currentpage}`,
         })
@@ -46,7 +57,7 @@ Page({
     wx.showLoading({
         title: '加载中',
     })
-    const currentPage  =pageNum || this.data.currentPage; 
+    const currentPage  =pageNum || this.data.currentPage
     let params:{[x:string]:any} = { page_number: currentPage };
     const {activityKey} = this.data;
     switch(activityKey){
@@ -60,16 +71,16 @@ Page({
             params.temp_value = activityKey;
             break;
     }
-    request({
+    request<ResponseType>({
         url:"/imgai/zeus/orderlist/",
         data:params,
         method:"GET",
     }).then((res)=>{
         if(res?.code ===200) {
-            const newList = res?.data?.list.map((el)=>({...el,currentPage:res.data.page_number}))
+            const newList = res?.data?.list.map((el)=>({...el,currentPage:res.data.page_number}));
             this.setData({ 
-                list:[...this.data.list,...newList],
-                currentPage:res.data.page_number,
+                dataList:[...this.data.dataList,...newList],
+                currentPage:res.data.page_number as number,
                 totalPage:Math.ceil(res.data.total/res.data.page_size)
              })
         }
@@ -83,22 +94,23 @@ Page({
     const data = e.currentTarget.dataset
     this.setData({
         activityKey: data.tabid,
-        list:[]
+        currentPage:1,
+        dataList:[]
     })
     this.fetchList()
   },
-  fetchTemplate(){
+  fetchTemplateList(){
     const that = this;
     fetchTemplate().then((res)=>{
         if(res?.code ===200) {
-            that.setData({tabList:[...that.data.tabList,...res.data.data]})
+            that.setData({tabList:[...that.data.fixedList,...res.data.data]})
         }
     }).catch((err)=> {
         console.log(err)
     })
   },
   onRefresh(){
-    this.setData({list:[]})
+    this.setData({dataList:[]})
     this.fetchList(1)
   },
   onPullDownRefresh(){

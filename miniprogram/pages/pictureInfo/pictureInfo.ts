@@ -45,11 +45,16 @@ Page({
      */
     data: {
         list:[],
+        prevIndex:0,
         currentIndex:0,
         currentPage:0,
         visible:false,
         currentPicSd:{},
-        infoKeyList
+        infoKeyList,
+        tempValue:"",
+        currentImgId:"",//当前的图片id
+        total:0,
+        totalPage:0,
     },
 
     /**
@@ -60,7 +65,8 @@ Page({
         this.setData({
             currentImgId,
             tempValue,
-            currentPage
+            currentPage,
+            list:[]
         })
         this.fetchList({ currentImgId, tempValue, currentPage })
     },
@@ -97,20 +103,61 @@ Page({
             method:"GET",
         }).then((res)=>{
             if(res?.code ===200) {
-                const list = res?.data?.list || [];
-                const currentIndex  = list.findIndex((el)=>el.id == values.currentImgId); 
-                this.setData({ list,currentIndex })
+                const { list } =this.data;
+                const newList = [...list,...res?.data?.list] || [];
+                const currentIndex  = newList.findIndex((el)=>el.id == values.currentImgId);
+                this.setData({ 
+                    list:JSON.parse(JSON.stringify(newList)),
+                    currentIndex,
+                    total: res.data.total,
+                    totalPage:Math.ceil(res.data.total/res.data.page_size)
+                })
             }
         }).catch((err)=> {
             console.log(err)
         })
     },
+    handleSwiper(e){
+        const { list, currentPage, currentIndex, tempValue, totalPage  } =this.data;
+        const { current, currentItemId } =e.detail;
+        console.log('滑',e,`currentIndex-${this.data.currentIndex}`);
+        if(Number(current) === currentIndex) {
+            wx.showToast({
+                title:'没有更多数据了哦～'
+            })
+            return;
+        }
+        //向左滑
+        if(current < currentIndex) {
+            if(current === 0 && currentPage!=1 && currentPage < totalPage) {
+                const thsPageNum = Number(currentPage) - 1;
+                this.setData({ currentPage: thsPageNum })
+                this.fetchList({currentPage: thsPageNum, tempValue, currentImgId:currentItemId})
+            }
+        } else {
+        //向右滑
+            if(this.data.total === current ) {
+                wx.showToast({
+                    title:'没有更多数据了哦～'
+                })
+                return;
+            }
+            if(current === list.length -1 ) {
+                const thsPageNum = Number(currentPage)+1;
+                this.setData({ currentPage: thsPageNum })
+                this.fetchList({currentPage: thsPageNum, tempValue, currentImgId:currentItemId})
+            }
+        }
+        this.setData({ currentIndex: current,currentImgId:currentItemId })
+    },
     submitLike(e){
         const data =e.currentTarget.dataset;
+        const {currentImgId,tempValue,currentPage } =this.data;
         request({
             url:"/imgai/zeus/like/",
             data:{order:data.orderid}
         }).then((res)=> {
+            this.fetchList({currentImgId,tempValue, currentPage});
             // wx.showToast({
             //     type:'success',
             //     title:""
@@ -133,6 +180,9 @@ Page({
                     wx.saveImageToPhotosAlbum({
                         filePath: res.tempFilePath,
                         success:function(res){
+                            wx.showToast({
+                                title:'照片下载成功'
+                            })
                           wx.hideLoading()
                         }
                       })
@@ -154,14 +204,13 @@ Page({
      * 生命周期函数--监听页面隐藏
      */
     onHide() {
-
     },
 
     /**
      * 生命周期函数--监听页面卸载
      */
     onUnload() {
-
+        this.setData({list:[]})
     },
 
     /**

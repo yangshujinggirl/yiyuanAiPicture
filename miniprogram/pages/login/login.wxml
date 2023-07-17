@@ -15,7 +15,8 @@
       </view>
     </view>
     <view wx:else>
-      <button class="btn1 picture-btn" bindtap="handleWeinxinLogin">微信一键登录</button>
+      <!-- <button class="btn1 picture-btn" bindtap="handleWeinxinLogin">微信一键登录</button> -->
+      <button class="btn1 picture-btn"  open-type="getRealtimePhoneNumber" bindgetrealtimephonenumber="bindgetrealtimephonenumber">微信一键登录</button>
       <button  class="btn2 picture-btn" bindtap="togglePhoneLogin"> 手机号码登录 </button>
     </view>
     <view class="proto-wrap">

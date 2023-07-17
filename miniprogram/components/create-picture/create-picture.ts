@@ -43,11 +43,12 @@ Component({
     lifetimes: {
       // 生命周期函数，可以为函数，或一个在methods段中定义的方法名
       attached: function () { 
-        console.log("123333")
-        this.fetchTemplate()
       },
-      moved: function () { },
-      detached: function () { },
+      moved: function () { 
+      },
+      detached: function () { 
+      },
+    
     },
     // 生命周期函数，可以为函数，或一个在methods段中定义的方法名
     attached: function () { 
@@ -55,13 +56,29 @@ Component({
     }, // 此处attached的声明会被lifetimes字段中的声明覆盖
     ready: function() { 
     },
-  
     pageLifetimes: {
       // 组件所在页面的生命周期函数
-      show: function () { },
+      show: function () { 
+       
+        this.fetchTemplate()
+      },
+        hide: function(){
+            this.handleReset()
+        }
     },
   
     methods: {
+        handleReset(){
+            this.setData({
+                imgUrl:"",
+                checked:"",
+                styleList:[],
+                tmpValue:0,
+                activityCount:1,
+                prompt:"",
+                path:""
+            })
+        },
         switchChange:function(e){
             this.setData({checked:e.detail.value})
         },
@@ -93,7 +110,7 @@ Component({
             request({
                 url:"/imgai/zeus/order/",
                 data:{
-                    source_img:path,
+                    source_img:pageType === 't2p'?null:path,
                     count:activityCount,
                     prompt,
                     temp:tmpValue,
@@ -151,8 +168,10 @@ Component({
             const that = this;
           fetchTemplate().then((res)=>{
               if(res?.code ===200) {
-                  console.log("data",res.data)
-                  that.setData({styleList:[...that.data.styleList,...res.data.data]})
+                  that.setData({
+                      styleList:[...res.data.data],
+                      tmpValue:res.data.data[0].tmpValue
+                    })
               }
           }).catch((err)=> {
               console.log(err)

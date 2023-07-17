@@ -19,6 +19,18 @@ Page({
   onLoad() {
 
   },
+  bindgetrealtimephonenumber (e) {
+      console.log('getRealtimePhoneNumber',e)
+    if(!this.data.isAgree) {
+        wx.showToast({
+            title:"请勾选协议",
+            icon:"error"
+        })
+        return;
+    }
+    console.log(e)
+    this.handleWeinxinLogin(e.detail.code)
+  },
   validateForm(){
     const { phone, code } =this.data;
     const regCode =/^\d{4}/;
@@ -41,20 +53,13 @@ Page({
         return true;
     }
   },
-  handleWeinxinLogin () {
-    if(!this.data.isAgree) {
-        wx.showToast({
-            title:"请勾选协议",
-            icon:"error"
-        })
-        return;
-    }
+  handleWeinxinLogin (phone:number) {
     const that = this;
     wx.login({
         success (res) {
           if (res.code) {
             //发起网络请求
-            that.fetchLogin({ wx: res.code })
+            that.fetchLogin({ wx: res.code, phone })
           } else {
             console.log('登录失败！' + res.errMsg)
           }

@@ -2,6 +2,7 @@
     padding: 0 24rpx 0;
     .tab-list {
         width: 100%;
+    padding: 0 24rpx 0;
         display: flex;
         justify-content: center;
         position: fixed;
@@ -11,14 +12,20 @@
         box-sizing: border-box;
         font-size: 0;
         background:#1A1A1A;
+        .scroll-view_W{
+            white-space: nowrap;
+        }
         .scroll-view-item_w {
+            display: inline-block;
             font-size: 32rpx;
-            line-height: 1;
+            line-height: 66rpx;
+            height: 66rpx;
             color: #999;
-            padding: 24rpx 24rpx 24rpx;
+            padding: 0 24rpx;
             &.activity {
                 color: #87F1BC;
                 position: relative;
+                font-size: 36rpx;
                 &:after {
                     content: "";
                     position: absolute;
@@ -33,12 +40,14 @@
             }
         }
     }
+    .content-wrap {
+    }
     .list-wrap {
         width: 100%;
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
-        padding-top: 100rpx;
+        padding-top: 70rpx;
         .item-wrap {
             width: 49%;
             height: 336rpx;
@@ -89,6 +98,7 @@
         text-align: center;
         font-size: 28rpx;
         color: #fff;
+        padding-top: 160rpx;
         image {
             width: 320rpx;
             height: 320rpx;

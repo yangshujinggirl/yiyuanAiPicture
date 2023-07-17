@@ -6,8 +6,13 @@ interface IParamsProps {
     method?:"POST" | "OPTIONS" | "GET" | "HEAD" | "PUT" | "DELETE" | "TRACE" | "CONNECT" | undefined;
     responseType?:string;
 }
+interface ResonseType<T> {
+    code:number;
+    data:T;
+    msg:string
+}
 //统一的网络请求方法
-function request(params:IParamsProps) {
+function request<T>(params:IParamsProps):Promise<ResonseType<T>> {
   return new Promise((resolve,reject)=> {
     wx.request({
         url: domain + params.url, //接口请求地址
