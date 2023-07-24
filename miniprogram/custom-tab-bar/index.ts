@@ -11,10 +11,10 @@ Component({
         selectedIconPath: "../assets/icon_tabbar00.png",
         text: "首页",
       }, {
-        pagePath: "/pages/toPicture/toPicture",
+        pagePath: "/pages/creation/creation",
         iconPath: "../assets/icon_tabbar1.png",
         selectedIconPath: "../assets/icon_tabbar11.png",
-        text: "图转图",
+        text: "创作",
         isToken:true
       },{
         pagePath: "/pages/textToPicture/textToPicture",

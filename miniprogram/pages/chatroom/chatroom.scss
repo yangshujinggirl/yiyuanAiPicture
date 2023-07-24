@@ -1,0 +1,44 @@
+/* pages/chatroom/chatroom.wxss */
+page{
+    background: linear-gradient(180deg, #1A1A1A 70%, #87F1BC 160%) no-repeat;
+  }
+  .scroll{
+    height: calc(100vh - 80px);
+  }
+  .input-box{
+    width: 90%;
+    height: 98rpx;
+    border: 6rpx solid #87F1BC;
+    border-radius: 98rpx;
+    position: fixed;
+    left: 50%;
+    margin-left: -45%;
+    bottom: 100rpx;
+    background: #1A1A1A;
+    padding:0 30rpx;
+    box-sizing: border-box;
+  }
+  .head{
+    width: 90rpx;
+    height: 90rpx;
+    border-radius: 50%;
+    background-color: #333;
+    border: 2px solid #87F1BC;
+    overflow: hidden;
+  }
+  .msg{
+    padding: 25rpx;
+    background-color: #333;
+    min-width: 200rpx;
+    margin-top: 10rpx;
+  }
+  .msg-radius-l{
+    border-radius: 0rpx 20rpx 20rpx 20rpx;
+  }
+  .msg-radius-r{
+    border-radius: 20rpx 0rpx 20rpx 20rpx;
+  }
+  .w100{
+      width: 100%;
+  }
+  

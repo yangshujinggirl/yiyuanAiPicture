@@ -1,0 +1,29 @@
+<!--pages/creation/creation.wxml-->
+<view style="padding-top:{{barHeight + 120}}rpx;" class="creation-container">
+  <view class="pl30 pr30 mb25"><view class="banner"></view></view>
+  <scroll-view class="scroll-view pl40 pr15 position-re" scroll-x="true" bindscroll="scroll" style="width: 650rpx">
+    <text class="tab-item pl15 pr15 {{index==currentSwiper?'ft32 color-ff font-bold':'ft30 color-b1'}}" wx:for="{{tabList}}" wx:key="key" data-index="{{index}}">{{item.name}}</text>
+    <view class="line" style="left:{{currentSwiper==0?10:tabList[currentSwiper].left-(tabList[currentSwiper].width/2)}}px;"></view>
+  </scroll-view>
+  <view class="pt35">
+    <swiper bindchange="swiperChange" class="swiper">
+      <swiper-item wx:for="{{tabList}}" wx:key="key" data-index="{{index}}">
+        <scroll-view class="scroll" scroll-y="true" bindscrolltolower="onReachBottom">
+          <view class="left-float-topbr top-lr-scatter">
+            <view class="content" wx:for="{{contentArray}}" wx:key="key" data-id="{{item.id}}" data-title="{{item.name}}" bindtap="jumpDetail">
+              <view class="ft32 font-bold">{{item.name}}</view>
+              <view class="h100 mt25 ft16 color-b1">{{item.name}}</view>
+              <view class="mt15 center-float-center top-lr-scatter">
+                <view class="center-float-center">
+                  <view class="iconfont icon-xinxi ft28"></view>
+                  <view class="ml10 ft24">10W人使用</view>
+                </view>
+                <!-- <view bindtap="likeClick"><view class="iconfont icon-dianzan-qian ft26"></view></view> -->
+              </view>
+            </view>
+          </view>
+        </scroll-view>
+      </swiper-item>
+    </swiper>
+  </view>
+</view>
