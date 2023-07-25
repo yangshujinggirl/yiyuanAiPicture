@@ -3,7 +3,7 @@ page{
     background: linear-gradient(180deg, #1A1A1A 70%, #87F1BC 160%) no-repeat;
   }
   .scroll{
-    height: calc(100vh - 80px);
+    height: calc(100vh - 160px);
   }
   .input-box{
     width: 90%;
@@ -41,4 +41,7 @@ page{
   .w100{
       width: 100%;
   }
-  
+  .note{
+      width: 60rpx;
+      height: 80rpx;
+  }

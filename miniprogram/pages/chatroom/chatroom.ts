@@ -1,4 +1,10 @@
 // pages/chatroom/chatroom.ts
+import { request } from '../../utils/http';
+import { fetchFormatUserInfo } from '../../api/commonApi';
+
+const app = getApp<IAppOption>();
+let intervalWS = "" //断线重连定时器
+let socket = null
 Page({
 
     /**
@@ -10,7 +16,11 @@ Page({
         socket: null,
         messages: [],
         intervalWS: null,
-        isLodaing:false
+        isLodaing: false,
+        userInfo: {},
+        scrollTo: '',
+        endId: '',
+        isBtnLodaing: false
     },
 
     /**
@@ -18,11 +28,63 @@ Page({
      */
     onLoad(options) {
         this.setData({ options: options })
+        this.getList()
         this.webSocketInit()
+    },
+    //滚动条至最底部
+    autoScroll() {
+        let view_id = 'view_id_' + parseInt(Math.random() * 1000000)
+        this.setData({
+            scrollTo: ''
+        })
+        this.setData({
+            endId: view_id
+        })
+        this.setData({
+            scrollTo: view_id
+        })
+    },
+
+    getList() {
+        var that = this;
+        request({
+            url: "/imgai/chatapi/message/history",
+            data: {},
+            method: "GET"
+        }).then((res) => {
+            if (res?.code === 200) {
+                let messages = []
+                if (res.data.list != '') {
+                    res.data.list.forEach(item => {
+                        if (item.key_word) {
+                            messages.push({
+                                id: item.temp_id,
+                                content: item.key_word,
+                                isUser: true
+                            });
+                        }
+                        if (item.result_message) {
+                            messages.push({
+                                id: item.temp_id,
+                                content: item.result_message,
+                                isUser: false
+                            });
+                        }
+                    });
+                }
+
+                that.setData({
+                    messages: messages
+                })
+                this.autoScroll()
+
+            }
+        }).catch((err) => {
+            console.log(err)
+        })
     },
     webSocketInit() {
         var that = this
-        let socket = null
         let socketUrl = `wss://www.imageandai.com/msg/?token=${wx.getStorageSync('token')}`
         // 建立 WebSocket 连接
         socket = wx.connectSocket({
@@ -59,31 +121,34 @@ Page({
                 msg = JSON.parse(msg)
             }
             if (msg.code == 200) {
-                if (msg.type == 'ChatApi'||msg.type == 'ChatApiEnd') {
+                if (msg.type == 'ChatApi' || msg.type == 'ChatApiEnd') {
                     if (msg.temp_id == that.data.options.id) {
                         console.log(msg);
                         const messages = that.data.messages;
                         info += msg.message
                         if (msg.type == 'ChatApiEnd') {
                             that.setData({
-                                isLodaing:false
+                                isLodaing: false
                             })
                             messages.push({
-                                id:msg.temp_id,
+                                id: msg.temp_id,
                                 content: info,
                                 isUser: false
                             });
                             that.setData({
-                                messages: messages
+                                messages: messages,
+                                isBtnLodaing: false
                             })
+                            info = ''
+                            that.autoScroll()
                         }
                     }
                 }
-            }else{
+            } else {
                 const messages = that.data.messages;
                 messages.push({
-                    id:msg.temp_id,
-                    content: '服务端出错了！请稍后再试...',
+                    id: msg.temp_id,
+                    content: msg.code + msg.message + '--服务端出错了！请稍后再试...',
                     isUser: false
                 });
                 that.setData({
@@ -91,6 +156,9 @@ Page({
                 })
             }
         })
+        if(!intervalWS){
+            that.ping()
+        }
         that.setData({
             socket: socket
         })
@@ -103,7 +171,7 @@ Page({
                 console.log("关闭socket连接", res)
             }
         })
-        // if (this.data.intervalWS) clearInterval(this.data.intervalWS)
+        if(intervalWS) clearInterval(intervalWS)
     },
     // 发送消息
     send(socket, msg) {
@@ -113,18 +181,19 @@ Page({
             success(res) {
                 const messages = that.data.messages;
                 messages.push({
-                    id:that.options.id,
+                    id: that.options.id,
                     content: msg.keyword,
                     isUser: true
                 });
                 that.setData({
                     messages: messages
                 })
-                setTimeout(()=>{
+                setTimeout(() => {
                     that.setData({
-                        isLodaing:true
+                        isLodaing: true
                     })
-                },100)
+                }, 100)
+                that.autoScroll()
                 console.log('WebSocket 消息发送成功', res)
             },
             fail(err) {
@@ -135,7 +204,26 @@ Page({
 
     // 心跳，由客户端发起
     ping() {
-
+        let times = 0
+        var that = this
+        // 每 10 秒钟由客户端发送一次心跳
+        intervalWS = setInterval(function () {
+            if (socket.readyState == 3) {
+                times += 1
+                // 超时重连，最多尝试 10 次
+                console.log("重连次数", times)
+                if (times >= 10) {
+                    wx.showToast({
+                        title: 'WebSocket 连接已断开~',
+                        icon: 'none',
+                        duration: 2000
+                    })
+                    clearInterval(intervalWS)
+                } else {
+                    webSocketInit()
+                }
+            }
+        }, 10000)
     },
     sandFun() {
         if (this.data.inputValue == '') {
@@ -150,13 +238,29 @@ Page({
             keyword: this.data.inputValue,
             operate_type: "chat"
         }
-        this.send(this.data.socket, msg)
-        this.setData({
-            inputValue: ''
-        })
+        if (!this.data.isBtnLodaing) {
+            this.setData({
+                isBtnLodaing: true
+            })
+            this.send(this.data.socket, msg)
+            this.setData({
+                inputValue: ''
+            })
+        } else {
+            wx.showToast({
+                title: '不能操作太频繁了噢～',
+                icon: "none"
+            });
+        }
+
     },
-    watch() {
-        var that = this
+    getUserInfo() {
+        const that = this;
+        fetchFormatUserInfo((res) => {
+            that.setData({
+                userInfo: res
+            })
+        });
     },
     /**
      * 生命周期函数--监听页面初次渲染完成
@@ -169,7 +273,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-
+        this.getUserInfo()
     },
 
     /**
@@ -183,7 +287,7 @@ Page({
      * 生命周期函数--监听页面卸载
      */
     onUnload() {
-        
+
         this.closeSocket(this.data.socket)
     },
 

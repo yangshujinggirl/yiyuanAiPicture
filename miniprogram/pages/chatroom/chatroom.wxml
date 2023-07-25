@@ -4,20 +4,20 @@
 </view>
 
 <view class="info-box">
-  <scroll-view class="scroll" scroll-y="true">
+  <scroll-view class="scroll" scroll-y="true" scroll-into-view="{{scrollTo}}">
     <view class="pl30 pr30">
       <view wx:for="{{messages}}" wx:key="key" class="mb30">
         <view class="left-float-top" wx:if="{{!item.isUser}}">
           <view class="head flex-sk">
             <image class="w100" mode="widthFix" src="../../assets/logo.png"></image>
           </view>
-          <view class="msg msg-radius-l ml30">{{item.content}}</view>
+          <text class="msg msg-radius-l ml30">{{item.content}}</text>
         </view>
         <view class="right-float-top" wx:else>
           <view class="left-float-top">
             <view class="msg msg-radius-r">{{item.content}}</view>
             <view class="head flex-sk ml30">
-                <image class="w100" mode="widthFix" src="../../assets/account_icon1.png"></image>
+                <image class="w100" mode="widthFix" src="{{userInfo.avatar?userInfo.avatar:'../../assets/account_icon1.png'}}"></image>
             </view>
           </view>
         </view>
@@ -31,13 +31,14 @@
         </view>
       </view>
       <view style="padding-top:200rpx;"></view>
+    <view class="last-view" id="{{endId}}" style="height:{{bottomHeight}}px;"></view>
     </view>
   </scroll-view>
 </view>
 
 <view class="input-box center-float-left top-lr-scatter">
   <input class="weui-input w100" model:value="{{inputValue}}" placeholder="请输入您的要求"/>
-  <view class="flex-sk ml10">
+  <view class="flex-sk ml10 note center-float-center">
     <view class="iconfont icon-note" bindtap="sandFun"></view>
   </view>
 </view>
