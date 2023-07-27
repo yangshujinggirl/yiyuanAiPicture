@@ -19,6 +19,20 @@
                     <textarea class="weui-input"  type="text" bindinput="bindKeyInput"  placeholder="请输入作品描述"  model:value="{{prompt}}"/>
             </view>
         </view>
+        <view class="form-action frameSize-action">
+            <view class="head-title">画面大小</view>
+            <view class="style-wrap">
+            <scroll-view class="scroll-view_W" scroll-x="true" bindscroll="scroll">
+                <block wx:for="{{frameSizeList}}" wx:key="index">
+                    <view class="content-wrap {{item.key === frameSizeActivity?'activity':''}}" bindtap="switchFrameSize" data-id="{{item.key}}">
+                        <image class="imgs" mode="scaleToFill" src="{{item.iconUrl}}"></image>
+                        <view class="size">{{item.size}}</view>
+                        <view class="name">{{item.value}}</view>
+                    </view>
+                </block>
+            </scroll-view>
+            </view>
+        </view>
         <view class="form-action style-action">
             <view class="head-title">选择风格</view>
             <view class="style-wrap">
@@ -44,7 +58,10 @@
             <view class="count-list">
                 <view wx:for="{{countList}}" wx:key="index" class="item-count {{item.count === activityCount?'activity':''}}" bindtap="switchCount" data-id="{{item.count}}">
                     <view>生成<text class="high">{{item.count}}</text>张图片</view>
-                    <view class="high">{{item.points}}<text class="unit">积分</text></view>
+                    <view>
+                        <text class="points high">{{item.points}}</text>
+                        积分
+                    </view>
                 </view>
             </view>
         </view>

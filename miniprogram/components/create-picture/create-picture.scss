@@ -4,6 +4,7 @@
     color: #fff;
     background-color: #1a1a1a;
     box-sizing: border-box;
+    font-size: 26rpx;
     .form-action {
         width: 100%;
         margin-bottom: 40rpx;
@@ -51,6 +52,42 @@
             padding: 40rpx 0 0 20rpx;
         }
     }
+    .frameSize-action {
+
+        .content-wrap {
+            display: inline-flex;
+            width: 104rpx;
+            height: 168rpx;
+            background: #333333;
+            border-radius: 8rpx;
+            font-size: 20rpx;
+            text-align: center;
+            flex-direction:column;
+            align-items: center;
+            justify-content: center;
+            .scroll-view_W{
+                white-space: nowrap;
+            }
+            .name {
+                color: #999;
+            }
+            .size {
+                color: #fff;
+                line-height: 40rpx;
+                font-size: 28rpx;
+            }
+            .imgs {
+                width: 60rpx;
+                height: 60rpx;
+            }
+            &:not(:last-child) {
+                margin-right: 12rpx;
+            }
+            &.activity {
+                border: 2rpx solid #87F1BC;
+            }
+        }
+    }
     .style-action {
         .scroll-view_W{
             white-space: nowrap;
@@ -85,7 +122,7 @@
             display: flex;
         }
         .item-type {
-            font-size: 28rpx;
+            font-size: 26rpx;
             line-height: 56rpx;
             text-align: center;
             width: 132rpx;
@@ -122,21 +159,17 @@
                 background-color: #333333;
                 margin-bottom: 24rpx;
                 border-radius: 10rpx;
+                font-size: 26rpx;
                 .high {
-                    padding: 0 6rpx;
+                    padding:0 6rpx;
                 }
-                .unit {
-                    font-size: 28rpx;
-                    padding-left: 6rpx;
-                }
+               
                 &.activity {
                     border: 2rpx solid #87F1BC;
+                    .points,
                     .high {
                         color:#87F1BC;
                         font-size: 32rpx;
-                    }
-                    .unit {
-                        font-size: 28rpx;
                     }
                 }
             }
