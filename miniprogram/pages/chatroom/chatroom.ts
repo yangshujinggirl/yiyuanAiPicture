@@ -67,9 +67,9 @@ Page({
         var that = this;
         request({
             url: "/imgai/chatapi/message/history",
-            data: {},
+            data: {temp:that.data.options.id},
             method: "GET"
-        }).then((res) => {
+        }).then((res:any) => {
             if (res?.code === 200) {
                 let messages = []
                 if (res.data.list != '') {
@@ -109,8 +109,6 @@ Page({
             url: socketUrl,
             header: {
                 'content-type': 'application/json',
-                'authorization': 'testaaa',
-                'x-wxapp-sockettype': 'ordertips',
             },
             success(res) {
                 console.log('WebSocket 连接成功: ', res)
@@ -133,7 +131,7 @@ Page({
         })
         //监听接收到的消息
         let info = ''
-        socket.onMessage((res) => {
+        socket.onMessage((res:any) => {
             let msg = res.data
             if (typeof msg === "string" && msg.startsWith("{")) {
                 msg = JSON.parse(msg)
@@ -162,15 +160,27 @@ Page({
                         }
                     }
                 }
-            } else {
+            }else if(msg.code == 42001){
                 const messages = that.data.messages;
                 messages.push({
                     id: msg.temp_id,
-                    content: msg.code + msg.message + '--服务端出错了！请稍后再试...',
+                    content: '您的余额不足，请充值再使用...',
                     isUser: false
                 });
                 that.setData({
-                    messages: messages
+                    messages: messages,
+                    isBtnLodaing: false
+                })
+            }else {
+                const messages = that.data.messages;
+                messages.push({
+                    id: msg.temp_id,
+                    content: msg.code + msg.message,
+                    isUser: false
+                });
+                that.setData({
+                    messages: messages,
+                    isBtnLodaing: false
                 })
             }
         })
