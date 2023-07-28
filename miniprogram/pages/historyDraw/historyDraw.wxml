@@ -23,7 +23,7 @@
         <view class="content-wrap" wx:else>
             <view class="list2-wrap"  wx:if="{{list.length > 0}}">
                 <view class="item-wrap" wx:for="{{list}}" wx:key="index">
-                    <image class="icon-place" mode="aspectFill" src="{{item.result_img}}"></image>
+                    <image class="icon-place" mode="aspectFill" src="{{item.result_img||item.source_img}}"></image>
                 </view>
             </view>
             <view class="nodata-wrap" wx:else>
