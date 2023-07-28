@@ -10,7 +10,7 @@
                 <view class="item-wrap" wx:for="{{list}}" wx:key="index">
                     <image class="icon-place" mode="scaleToFill" src="{{item.source_img||defaultImg}}"></image>
                     <view class="animation-wrap">
-                        <image class="icon" mode="scaleToFill" src="../../assets/loading.webp"></image>
+                        <image class="icon" mode="scaleToFill" src="../../assets/loading.gif"></image>
                         <view class="load-text">图片正在生成</view>
                     </view>
                 </view>
