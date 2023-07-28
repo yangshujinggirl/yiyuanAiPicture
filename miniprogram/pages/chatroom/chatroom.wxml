@@ -11,11 +11,14 @@
           <view class="head flex-sk">
             <image class="w100" mode="widthFix" src="../../assets/logo.png"></image>
           </view>
-          <text class="msg msg-radius-l ml30">{{item.content}}</text>
+          <view class="msg msg-radius-l ml30"> 
+            <text >{{item.content}}</text>
+            <view class="text-right mt20" data-info="{{item.content}}" bindtap="copyText">复制</view>
+          </view>
         </view>
         <view class="right-float-top" wx:else>
           <view class="left-float-top">
-            <view class="msg msg-radius-r">{{item.content}}</view>
+            <view class="msg msg-radius-r" data-info="{{item.content}}" bindtap="copyTextInput">{{item.content}}</view>
             <view class="head flex-sk ml30">
                 <image class="w100" mode="widthFix" src="{{userInfo.avatar?userInfo.avatar:'../../assets/account_icon1.png'}}"></image>
             </view>

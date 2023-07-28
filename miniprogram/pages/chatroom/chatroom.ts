@@ -44,7 +44,25 @@ Page({
             scrollTo: view_id
         })
     },
-
+    copyText(e) {
+        var content = e.target.dataset.info
+        wx.setClipboardData({
+            data: content,
+            success: function (res) {
+                wx.getClipboardData({
+                    success: function (res) {
+                        console.log(res.data) // 输出复制的内容
+                    }
+                })
+            },
+        });
+    },
+    copyTextInput(e){
+        var content = e.target.dataset.info
+        this.setData({
+            inputValue:content
+        })
+    },
     getList() {
         var that = this;
         request({
@@ -156,7 +174,7 @@ Page({
                 })
             }
         })
-        if(!intervalWS){
+        if (!intervalWS) {
             that.ping()
         }
         that.setData({
@@ -171,7 +189,7 @@ Page({
                 console.log("关闭socket连接", res)
             }
         })
-        if(intervalWS) clearInterval(intervalWS)
+        if (intervalWS) clearInterval(intervalWS)
     },
     // 发送消息
     send(socket, msg) {
