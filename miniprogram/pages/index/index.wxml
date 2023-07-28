@@ -11,18 +11,18 @@
         <view class="item-wrap" wx:for="{{dataList}}" wx:key="index" 
         data-currentPage="{{item.currentPage}}"
         data-id="{{item.id}}" bindtap="bindInfoTap">
-            <image class="bg-img" mode="scaleToFill" src="{{item.result_img}}"></image> 
+            <image class="bg-img" mode="aspectFill" src="{{item.result_img}}"></image> 
             <view class="info-bottom">
                 <view class="ib-item">
-                    <image class="icon-img" mode="scaleToFill" src="../../assets/bg.png"></image> 
+                    <image class="icon-img" mode="aspectFill" src="../../assets/bg.png"></image> 
                     <text>{{item.username}}</text>
                 </view>
                 <view class="ib-item">
-                    <image class="icon-img" mode="scaleToFill" src="../../assets/icon_look.png"></image> 
+                    <image class="icon-img" mode="aspectFill" src="../../assets/icon_look.png"></image> 
                     <text>{{item.like_total}}</text>
                 </view>
                 <view class="ib-item">
-                    <image class="icon-img" mode="scaleToFill" src="../../assets/icon_download.png"></image> 
+                    <image class="icon-img" mode="aspectFill" src="../../assets/icon_download.png"></image> 
                     <text>{{item.download_total}}</text>
                 </view>
             </view>

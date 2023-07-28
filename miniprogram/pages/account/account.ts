@@ -16,13 +16,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad() {
-        console.log('onLoad')
-        // this.setData({
-        //   userInfo:app.globalData.userInfo||{}
-        // })
-        // this.fetchList();
-        // this.getUserInfo()
-      },
+    },
        /**
      * 生命周期函数--监听页面显示
      */
@@ -32,28 +26,35 @@ Page({
                 selected: 3
             })
         }
-        this.setData({
-            userInfo:app.globalData.userInfo||{}
-        })
         this.fetchList();
         this.getUserInfo()
     },
        // 事件处理函数
     bindToSet() {
         wx.navigateTo({
-            url: '/pages/settingCenter/settingCenter',
+            url: '/subPages/settingCenter/settingCenter',
+        })
+    },
+    goRecharge(){
+        wx.navigateTo({
+            url: '/subPages/recharge/recharge',
+        })
+    },
+    bindDownload(){
+        wx.navigateTo({
+            url: '/subPages/historyDowonload/historyDowonload',
         })
     },
       // 事件处理函数
     bindDrawTap() {
         wx.navigateTo({
-            url: '/pages/historyDraw/historyDraw',
+            url: '/subPages/historyDraw/historyDraw',
         })
     },
     handleMyCreat(e) {
         const data = e.currentTarget.dataset
         wx.navigateTo({
-            url: `/pages/historyDraw/historyDraw?tempVal=${data.tempval}&tempName=${data.tempname}`,
+            url: `/subPages/historyDraw/historyDraw?tempVal=${data.tempval}&tempName=${data.tempname}`,
         })
     },
     fetchList(){
@@ -63,14 +64,13 @@ Page({
             method:"GET",
             data:{}
         }).then((res)=> {
-            console.log('res',res)
             if(res.code === 200) {
                 that.setData({
                     list:res.data?.data||[]
                 })
             }
         })
-        
+
     },
     getUserInfo(){
         const that = this;
@@ -78,6 +78,7 @@ Page({
             that.setData({
                 userInfo:res
             })
+            app.globalData.userInfo = {...app.globalData.userInfo,...res}
         });
     },
 

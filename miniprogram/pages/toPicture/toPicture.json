@@ -1,6 +1,0 @@
-{
-    "navigationBarTitleText":"图转图",
-    "usingComponents": {
-        "create-picture": "/components/create-picture/create-picture"
-    }
-}

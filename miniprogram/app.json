@@ -1,52 +1,59 @@
 {
-    "pages": [
-        "pages/startPage/startPage",
-        "pages/index/index",
-        "pages/logs/logs",
-        "pages/toPicture/toPicture",
-        "pages/login/login",
-        "pages/pictureInfo/pictureInfo",
-        "pages/account/account",
-        "pages/textToPicture/textToPicture",
-        "pages/historyDraw/historyDraw",
-        "pages/creatPicture/creatPicture",
-        "pages/register/register",
-        "pages/protocol/protocol",
-        "pages/settingCenter/settingCenter",
-        "pages/authorization/authorization",
-        "pages/creation/creation",
-        "pages/chatroom/chatroom"
-    ],
-    "window": {
-        "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#1a1a1a",
-        "navigationBarTitleText": "Weixin",
-        "navigationBarTextStyle": "white"
-    },
-    "style": "v2",
-    "sitemapLocation": "sitemap.json",
-    "tabBar": {
-        "custom": true,
-        "color": "#000000",
-        "selectedColor": "#000000",
-        "backgroundColor": "#000000",
-        "list": [
-            {
-                "pagePath": "pages/index/index",
-                "text": "首页"
-            },
-            {
-                "pagePath": "pages/creation/creation",
-                "text": "创作"
-            },
-            {
-                "pagePath": "pages/textToPicture/textToPicture",
-                "text": "文字转图"
-            },
-            {
-                "pagePath": "pages/account/account",
-                "text": "我的"
-            }
-        ]
+  "pages": [
+    "pages/startPage/startPage",
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/login/login",
+    "pages/account/account",
+    "pages/textToPicture/textToPicture",
+    "pages/authorization/authorization",
+    "pages/creation/creation",
+    "pages/chatroom/chatroom"
+  ],
+  "subpackages": [
+    {
+      "root": "subPages",
+      "pages": [
+        "recharge/recharge",
+        "pictureInfo/pictureInfo",
+        "historyDraw/historyDraw",
+        "register/register",
+        "protocol/protocol",
+        "settingCenter/settingCenter",
+        "historyDowonload/historyDowonload"
+      ]
     }
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#1a1a1a",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle": "white"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "custom": true,
+    "color": "#000000",
+    "selectedColor": "#000000",
+    "backgroundColor": "#000000",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/creation/creation",
+        "text": "创作"
+      },
+      {
+        "pagePath": "pages/textToPicture/textToPicture",
+        "text": "文字转图"
+      },
+      {
+        "pagePath": "pages/account/account",
+        "text": "我的"
+      }
+    ]
+  }
 }

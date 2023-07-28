@@ -5,7 +5,16 @@ Page({
      * 页面的初始数据
      */
     data: {
-
+        tabList:[
+            {
+              key:"p2p",
+              title:"图生图",  
+            },{
+                key:"t2p",
+                title:"文生图",  
+              }
+        ],
+        activityKey:"p2p"
     },
 
     /**
@@ -31,6 +40,12 @@ Page({
                 selected: 2
             })
         }
+    },
+    switchTab(e) {
+        const data = e.currentTarget.dataset
+        this.setData({
+            activityKey: data.tabid,
+        })
     },
 
     /**

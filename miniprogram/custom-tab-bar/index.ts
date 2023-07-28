@@ -20,7 +20,7 @@ Component({
         pagePath: "/pages/textToPicture/textToPicture",
         iconPath: "../assets/icon_tabbar2.png",
         selectedIconPath: "../assets/icon_tabbar22.png",
-        text: "文字转图",
+        text: "绘画",
         isToken:true
       },{
         pagePath: "/pages/account/account",

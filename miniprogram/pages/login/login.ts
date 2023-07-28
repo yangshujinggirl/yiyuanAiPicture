@@ -1,6 +1,7 @@
 // index.ts
 // 获取应用实例
 import {request} from '../../utils/http';
+import { compareVersion } from '../../utils/util';
 
 Page({
   data: {
@@ -9,6 +10,7 @@ Page({
     isUsePassword:false,
     isAgree:false,
     code:"",
+    isCanUseRealTime:false
   },
   // 事件处理函数
   bindViewTap() {
@@ -17,24 +19,25 @@ Page({
     })
   },
   onLoad() {
-
-  },
-  bindgetrealtimephonenumber (e) {
-      console.log('getRealtimePhoneNumber',e)
-    if(!this.data.isAgree) {
-        wx.showToast({
-            title:"请勾选协议",
-            icon:"error"
-        })
-        return;
+    const isHighVersion = compareVersion('2.24.4');
+    if(isHighVersion >= 0) {
+        this.setData({isCanUseRealTime:true})
+    } else {
+        this.setData({isCanUseRealTime:false})
     }
-    console.log(e)
+  },
+  //1.2.0
+  getPhoneNumber (e) {
+    this.handleWeinxinLogin(e.detail.code)
+  },
+  //2.24.4
+  bindgetrealtimephonenumber (e) {
     this.handleWeinxinLogin(e.detail.code)
   },
   validateForm(){
     const { phone, code } =this.data;
     const regCode =/^\d{4}/;
-    const regPhone = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/; 
+    const regPhone = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
     if(!regPhone.test(phone)) {
         wx.showToast({
             title:"输入正确的手机",
@@ -115,7 +118,7 @@ Page({
 },
   goRegister(){
     wx.redirectTo({
-      url:'/pages/register/register'
+      url:'/subPages/register/register'
     })
   },
 })

@@ -18,7 +18,7 @@
                 </view>
             </view>
             <view>
-                <image class="icon-set" mode="scaleToFill" src="../../assets/icon_download.png" bindtap="bindToSet"></image>
+                <image class="icon-set" mode="scaleToFill" src="../../assets/icon_sets.png" bindtap="bindToSet"></image>
             </view>
         </view>
         <view class="data-Analysis-action">
@@ -26,8 +26,16 @@
             <view class="item"><text class="high">{{userInfo.download_count}}</text>喜欢</view>
         </view>
     </view>
+    <view class="recharge-action-wrap">
+        <view class="lf">
+            <image class="icon-recharge" mode="scaleToFill" src="../../assets/icon_recharge.png"></image>
+            我的积分
+            <text class="points">{{userInfo.coin}}</text>
+        </view>
+        <button type="primary" class="recharge-btn" bindtap="goRecharge">充值</button>
+    </view>
     <view class="part-middle-wrap">
-        <view class="item">
+        <view class="item" bindtap="bindDownload">
             <image class="icon" mode="scaleToFill" src="../../assets/account_icon2.png"></image>
             <view>历史下载</view>
         </view>
@@ -45,7 +53,7 @@
                     <block>
                         <view class="list"  wx:if="{{item.list.length > 0}}">
                             <view class="pic-item" wx:for="{{item.list}}" wx:for-item="el">
-                                <image mode="scaleToFill" src="{{el.result_img || el.source_img}}"></image> 
+                                <image mode="aspectFill" src="{{el.result_img || el.source_img}}"></image> 
                             </view>
                         </view>
                         <view class="noData-wrap" wx:else>
@@ -57,10 +65,6 @@
                             <view>共{{item.total}}张</view>
                         </view>
                     </block>
-                    <!-- <view class="noData-wrap" wx:else>
-                        <image class="nodata-img" mode="scaleToFill" src="../../assets/account_noData.png"></image> 
-                        <view>暂无数据</view>
-                    </view> -->
                 </view>
             </block>
         </view>

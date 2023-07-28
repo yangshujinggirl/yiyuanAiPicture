@@ -50,7 +50,7 @@ Page({
       const { activityKey } =this.data;
       const data = e.currentTarget.dataset;
         wx.navigateTo({
-            url: `/pages/pictureInfo/pictureInfo?currentImgId=${data.id}&tempValue=${activityKey}&currentPage=${data.currentpage}`,
+            url: `/subPages/pictureInfo/pictureInfo?currentImgId=${data.id}&tempValue=${activityKey}&currentPage=${data.currentpage}`,
         })
   },
   fetchList(pageNum?:number){
@@ -83,6 +83,7 @@ Page({
                 currentPage:res.data.page_number as number,
                 totalPage:Math.ceil(res.data.total/res.data.page_size)
              })
+            wx.stopPullDownRefresh();
         }
     }).catch((err)=> {
         console.log(err)

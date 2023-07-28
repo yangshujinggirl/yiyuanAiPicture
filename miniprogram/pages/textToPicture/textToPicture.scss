@@ -1,1 +1,36 @@
 /* pages/textToPicture/textToPicture.wxss */
+.toPictrue-pages-wrap {
+    .tab-list {
+        width: 100%;
+        padding: 0 0 20rpx 24rpx;
+        box-sizing: border-box;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background:#1A1A1A;
+        z-index: 3;
+        .scroll-view-item_w {
+            display: inline-block;
+            height: 60rpx;
+            font-size: 28rpx;
+            line-height:60rpx;
+            color: #999;
+            margin-right: 32rpx;
+            &.activity {
+                color: #fff;
+                font-size: 34rpx;
+                position: relative;
+                &:after {
+                    content: "";
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 48rpx;
+                    height: 4rpx;
+                    border-radius: 4rpx;
+                    background: linear-gradient(90deg, #1A1A1A 0%, #87F1BC 100%);;
+                }
+            }
+        }
+    }
+}

@@ -1,3 +1,6 @@
-<view>
-    <create-picture page-type="t2p" />
+<view class="toPictrue-pages-wrap">
+    <view class="tab-list">
+            <text wx:for="{{tabList}}" wx:key="index" class="scroll-view-item_w {{item.key === activityKey?'activity':''}}" key="item.key" bindtap="switchTab" data-tabId="{{item.key}}">{{item.title}}</text>
+    </view>
+    <create-picture page-type="{{activityKey}}" />
 </view>
