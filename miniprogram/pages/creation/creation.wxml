@@ -1,6 +1,6 @@
 <!--pages/creation/creation.wxml-->
 <view style="padding-top:{{barHeight + 120}}rpx;" class="creation-container">
-  <view class="pl30 pr30 mb25"><view class="banner"></view></view>
+  <view class="pl30 pr30 mb25"><view class="banner" data-id="{{contentArray[0].id}}" data-title="{{contentArray[0].name}}" bindtap="jumpDetail"></view></view>
   <!-- <scroll-view class="scroll-view pl40 pr15 position-re" scroll-x="true" bindscroll="scroll" style="width: 650rpx">
     <text class="tab-item pl15 pr15 {{index==currentSwiper?'ft32 color-ff font-bold':'ft30 color-b1'}}" wx:for="{{tabList}}" wx:key="key" data-index="{{index}}">{{item.name}}</text>
     <view class="line" style="left:{{currentSwiper==0?10:tabList[currentSwiper].left-(tabList[currentSwiper].width/2)}}px;"></view>
