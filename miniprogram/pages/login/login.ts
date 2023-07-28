@@ -37,7 +37,7 @@ Page({
   validateForm(){
     const { phone, code } =this.data;
     const regCode =/^\d{4}/;
-    const regPhone = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/; 
+    const regPhone = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
     if(!regPhone.test(phone)) {
         wx.showToast({
             title:"输入正确的手机",
@@ -118,7 +118,7 @@ Page({
 },
   goRegister(){
     wx.redirectTo({
-      url:'/pages/register/register'
+      url:'/subPages/register/register'
     })
   },
 })

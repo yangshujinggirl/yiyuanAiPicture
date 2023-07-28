@@ -32,29 +32,29 @@ Page({
        // 事件处理函数
     bindToSet() {
         wx.navigateTo({
-            url: '/pages/settingCenter/settingCenter',
+            url: '/subPages/settingCenter/settingCenter',
         })
     },
     goRecharge(){
         wx.navigateTo({
-            url: '/pages/recharge/recharge',
+            url: '/subPages/recharge/recharge',
         })
     },
     bindDownload(){
         wx.navigateTo({
-            url: '/pages/historyDowonload/historyDowonload',
+            url: '/subPages/historyDowonload/historyDowonload',
         })
     },
       // 事件处理函数
     bindDrawTap() {
         wx.navigateTo({
-            url: '/pages/historyDraw/historyDraw',
+            url: '/subPages/historyDraw/historyDraw',
         })
     },
     handleMyCreat(e) {
         const data = e.currentTarget.dataset
         wx.navigateTo({
-            url: `/pages/historyDraw/historyDraw?tempVal=${data.tempval}&tempName=${data.tempname}`,
+            url: `/subPages/historyDraw/historyDraw?tempVal=${data.tempval}&tempName=${data.tempname}`,
         })
     },
     fetchList(){
@@ -70,7 +70,7 @@ Page({
                 })
             }
         })
-        
+
     },
     getUserInfo(){
         const that = this;
