@@ -15,7 +15,8 @@
         "pages/settingCenter/settingCenter",
         "pages/authorization/authorization",
         "pages/creation/creation",
-        "pages/chatroom/chatroom"
+        "pages/chatroom/chatroom",
+        "pages/recharge/recharge"
     ],
     "window": {
         "backgroundTextStyle": "light",

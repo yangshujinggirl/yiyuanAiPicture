@@ -44,6 +44,11 @@ Page({
             url: '/pages/settingCenter/settingCenter',
         })
     },
+    goRecharge(){
+        wx.navigateTo({
+            url: '/pages/recharge/recharge',
+        })
+    },
       // 事件处理函数
     bindDrawTap() {
         wx.navigateTo({

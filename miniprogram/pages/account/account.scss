@@ -97,6 +97,49 @@
         height: 56rpx;
     }
    }
+   .recharge-action-wrap {
+    width: 100%;
+    height: 104rpx;
+    background: linear-gradient(90deg, #A5FF8E 0%, #ACFFDC 100%);
+    border-radius: 16rpx;
+    font-size: 24rpx;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24rpx;
+    box-sizing: border-box;
+    margin-bottom: 24rpx;
+    .mr {
+        margin-right: 16rpx;
+    }
+    .lf {
+        display: flex;
+        align-items: center;
+    }
+    .icon-recharge {
+        width: 32rpx;
+        height: 32rpx;
+        margin-right: 16rpx;
+    }
+    .points {
+        font-size: 40rpx;
+        font-weight: bold;
+        margin-left: 16rpx;
+    }
+    .recharge-btn {
+        width: 124rpx;
+        height: 48rpx;
+        background: #333333;
+        border-radius: 16rpx;
+        font-size: 30rpx;
+        font-weight: 500;
+        color: #FFFFFF;
+        line-height: 48rpx;
+        padding: 0;
+        margin: 0;
+    }
+   }
    .my-works-wrap {
     background: #333333;
     border-radius: 16rpx;

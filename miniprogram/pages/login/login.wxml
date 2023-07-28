@@ -15,9 +15,11 @@
       </view>
     </view>
     <view wx:else>
-      <!-- <button class="btn1 picture-btn" bindtap="handleWeinxinLogin">微信一键登录</button> -->
-      <button class="btn1 picture-btn"  open-type="getRealtimePhoneNumber" bindgetrealtimephonenumber="bindgetrealtimephonenumber">微信一键登录</button>
-      <button  class="btn2 picture-btn" bindtap="togglePhoneLogin"> 手机号码登录 </button>
+      <!-- 2.24.4版本实时获取手机号 -->
+      <button class="btn1 picture-btn"  open-type="getRealtimePhoneNumber" bindgetrealtimephonenumber="bindgetrealtimephonenumber"  wx:if="{{isHighVersion}}" disabled="{{!isAgree}}">微信一键登录</button>
+      <!-- 1.2.0获取手机号 -->
+      <button class="btn1 picture-btn"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:else disabled="{{!isAgree}}">微信一键登录</button>
+      <button  class="btn2 picture-btn" bindtap="togglePhoneLogin" disabled="{{!isAgree}}"> 手机号码登录 </button>
     </view>
     <view class="proto-wrap">
         <label class="checkbox">

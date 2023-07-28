@@ -18,13 +18,21 @@
                 </view>
             </view>
             <view>
-                <image class="icon-set" mode="scaleToFill" src="../../assets/icon_download.png" bindtap="bindToSet"></image>
+                <image class="icon-set" mode="scaleToFill" src="../../assets/icon_sets.png" bindtap="bindToSet"></image>
             </view>
         </view>
         <view class="data-Analysis-action">
             <view class="item"><text class="high">{{userInfo.like_count}}</text>下载</view>
             <view class="item"><text class="high">{{userInfo.download_count}}</text>喜欢</view>
         </view>
+    </view>
+    <view class="recharge-action-wrap">
+        <view class="lf">
+            <image class="icon-recharge" mode="scaleToFill" src="../../assets/icon_recharge.png"></image>
+            我的积分
+            <text class="points">999</text>
+        </view>
+        <button type="primary" class="recharge-btn" bindtap="goRecharge">充值</button>
     </view>
     <view class="part-middle-wrap">
         <view class="item">

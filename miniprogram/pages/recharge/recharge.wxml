@@ -1,0 +1,41 @@
+<view class="recharge-page-wrap">
+    <view class="head-info">
+        <text class="points">343323</text>
+        <view class="icon-wrap">
+        我的积分
+            <image class="icon-recharge" mode="scaleToFill" src="../../assets/icon_recharge.png"></image>
+        </view>
+    </view>
+    <view class="list-wrap">
+        <view class="list-content">
+            <view class="item" wx:for="{{list}}">
+                <view class="item-inner">
+                    <view class="point-wrap">
+                        <image class="icon-recharge" mode="scaleToFill" src="../../assets/icon_recharge2.png"></image>
+                        <text class="points-num">{{item.point}}积分</text>
+                    </view>
+                    <view class="desc">
+                        {{item.desc}}
+                    </view>
+                    <button type="primary" class="recharge-btn" bindtap="goRecharge">¥{{item.btnText}}</button>
+                </view>
+            </view>
+        </view>
+        <view class="recharge-remark-info">
+            <view class="hd-info">
+                <view class="flex-wrap">
+                    <image class="icons" mode="scaleToFill" src="../../assets/icon_remark.png"></image>
+                    充值说明
+                </view>
+                <view class="flex-wrap">
+                充值记录
+                <image class="icons" mode="scaleToFill" src="../../assets/icon_arrow.png"></image>
+                </view>
+            </view>
+            <view class="content">
+                1.这是说明这是说明这是说明这是说明这是说明这是说明这是说明这是说明这
+                2.是说明这是说明这是说明这是说明这是说明这是说明说明这是说明
+            </view>
+        </view>
+    </view>
+</view>

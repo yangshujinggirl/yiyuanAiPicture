@@ -1,0 +1,124 @@
+page {
+    background: linear-gradient(180deg, #A5FF8E 0%, #ACFFDC 100%);
+    color: #999;
+    font-size: 28rpx;
+    height: 100%;
+    .recharge-page-wrap {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+        .head-info {
+            color: #333333;
+            text-align: center;
+            padding: 24rpx 0 40rpx;
+            background: linear-gradient(180deg, #A5FF8E 0%, #ACFFDC 100%);
+            .points {
+                font-size: 64rpx;
+                font-weight: 600;
+                line-height: 90rpx;
+            }
+            .icon-wrap {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .icon-recharge {
+                width: 32rpx;
+                height: 32rpx;
+            }
+        }
+        .list-wrap {
+            height: 0;
+            flex: 1;
+            background: #1A1A1A;
+            border-radius: 32rpx 32rpx 0rpx 0rpx;
+            padding: 32rpx;
+            .list-content {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+            }
+            .item {
+                width: 48%;
+                height: 218rpx;
+                background: #333333;
+                border-radius: 20rpx;
+                background: linear-gradient(180deg, rgba(165, 255, 142, 1), rgba(172, 255, 220, 1));
+                margin-bottom: 24rpx;
+                padding: 2rpx;
+                box-sizing: border-box;
+                .item-inner {
+                    height: 100%;
+                    background: #333;
+                    border-radius: 20rpx;
+                    text-align: center;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                }
+                .point-wrap {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    .icon-recharge {
+                        width: 40rpx;
+                        height: 40rpx;
+                    }
+                    .points-num {
+                        font-size: 40rpx;
+                        font-weight: 600;
+                        color: #87F1BC;
+                        line-height: 56rpx;
+                    }
+                }
+                .desc {
+                    font-size: 28rpx;
+                    font-weight: 400;
+                    color: #87F1BC;
+                    line-height: 40rpx;
+                    margin: 10rpx 0 22rpx;
+                }
+                .recharge-btn {
+                    width: 128rpx;
+                    height: 44rpx;
+                    line-height: 44rpx;
+                    background: linear-gradient(90deg, #A5FF8E 0%, #ACFFDC 100%);
+                    border-radius: 22rpx;
+                    margin: 0;
+                    padding: 0;
+                    color: #333;
+                    font-weight: 500;
+                    font-size: 28rpx;
+                }
+            }
+            .recharge-remark-info {
+                padding-top: 100rpx;
+                .flex-wrap {
+                    display: flex;
+                    align-items: center;
+                }
+                .hd-info {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    font-weight: 500;
+                    color: #FFFFFF;
+                    line-height: 44rpx;
+                    font-size: 32rpx; 
+                    margin-bottom: 24rpx;
+                }
+                .content {
+                    color: #999999;
+                    line-height: 40rpx;
+                }
+                .icons {
+                    width: 40rpx;
+                    height: 40rpx;
+                }
+            }
+        }
+    }
+}
