@@ -23,8 +23,11 @@ Component({
       checked:"",
       styleList:[],
       tmpValue:0,
-      redrawList:[{label:"像本人",value:1},{label:"创造性",value:2}],
-      redraw_type:1,
+    //   redrawList:[
+    //       {label:"像本人",value:1},
+    //       {label:"创造性",value:2}
+    //     ],
+    //   redraw_type:1,
       countList:[
           {
               count:1,
@@ -95,7 +98,6 @@ Component({
     pageLifetimes: {
       // 组件所在页面的生命周期函数
       show: function () { 
-          console.log('show')
         this.handleReset()
         this.fetchTemplate()
       },
@@ -109,8 +111,6 @@ Component({
             this.setData({
                 imgUrl:"",
                 checked:"",
-                styleList:[],
-                tmpValue:0,
                 activityCount:1,
                 prompt:"",
                 path:"",
@@ -179,7 +179,7 @@ Component({
             success (res) {
                 const tempFilePaths = res.tempFiles;
                 const file = tempFilePaths[0];
-                if(file.size > ( 1024 * 1024 )* 5 ) {
+                if(file.size > ( 1024 * 1024 )* 20 ) {
                 wx.showToast({
                     title: '请上传5M以内文件',
                 })

@@ -1,0 +1,13 @@
+<view class="history-download-pages-wrap">
+        <view class="content-wrap">
+            <view class="list2-wrap"  wx:if="{{list.length > 0}}">
+                <view class="item-wrap" wx:for="{{list}}" wx:key="index">
+                    <image class="icon-place" mode="aspectFill" src="{{item.order_info.result_img}}"></image>
+                </view>
+            </view>
+            <view class="nodata-wrap" wx:else>
+                <image class="icon-place" mode="scaleToFill" src="../../assets/account_noData.png"></image>
+                <view>暂无数据</view>
+            </view>
+        </view>
+</view>

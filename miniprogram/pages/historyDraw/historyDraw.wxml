@@ -5,19 +5,30 @@
         </scroll-view>
     </view>
     <!-- 等待中 -->
-    <view class="content-wrap">
-        <view class="list-wrap"  wx:if="{{list.length > 0}}">
-            <view class="item-wrap" wx:for="{{list}}" wx:key="index">
-                <image class="icon-place" mode="scaleToFill" src="{{item.status == '0'?item.source_img:item.result_img}}"></image>
-                <view class="animation-wrap" wx:if="{{item.status == '0'}}">
-                    <image class="icon" mode="scaleToFill" src="../../assets/loading.webp"></image>
-                    <view class="load-text">图片正在生成</view>
+        <view class="content-wrap" wx:if="{{activityKey === '0'}}">
+            <view class="list-wrap"  wx:if="{{list.length > 0}}">
+                <view class="item-wrap" wx:for="{{list}}" wx:key="index">
+                    <image class="icon-place" mode="scaleToFill" src="{{item.source_img||defaultImg}}"></image>
+                    <view class="animation-wrap">
+                        <image class="icon" mode="scaleToFill" src="../../assets/loading.webp"></image>
+                        <view class="load-text">图片正在生成</view>
+                    </view>
                 </view>
             </view>
+            <view class="nodata-wrap" wx:else>
+                <image class="icon-place" mode="scaleToFill" src="../../assets/account_noData.png"></image>
+                <view>暂无数据</view>
+            </view>
         </view>
-        <view class="nodata-wrap" wx:else>
-            <image class="icon-place" mode="scaleToFill" src="../../assets/account_noData.png"></image>
-            <view>暂无数据</view>
+        <view class="content-wrap" wx:else>
+            <view class="list2-wrap"  wx:if="{{list.length > 0}}">
+                <view class="item-wrap" wx:for="{{list}}" wx:key="index">
+                    <image class="icon-place" mode="aspectFill" src="{{item.result_img}}"></image>
+                </view>
+            </view>
+            <view class="nodata-wrap" wx:else>
+                <image class="icon-place" mode="aspectFill" src="../../assets/account_noData.png"></image>
+                <view>暂无数据</view>
+            </view>
         </view>
-    </view>
 </view>

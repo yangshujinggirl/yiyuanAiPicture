@@ -16,13 +16,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad() {
-        console.log('onLoad')
-        // this.setData({
-        //   userInfo:app.globalData.userInfo||{}
-        // })
-        // this.fetchList();
-        // this.getUserInfo()
-      },
+    },
        /**
      * 生命周期函数--监听页面显示
      */
@@ -32,9 +26,6 @@ Page({
                 selected: 3
             })
         }
-        this.setData({
-            userInfo:app.globalData.userInfo||{}
-        })
         this.fetchList();
         this.getUserInfo()
     },
@@ -47,6 +38,11 @@ Page({
     goRecharge(){
         wx.navigateTo({
             url: '/pages/recharge/recharge',
+        })
+    },
+    bindDownload(){
+        wx.navigateTo({
+            url: '/pages/historyDowonload/historyDowonload',
         })
     },
       // 事件处理函数
@@ -68,7 +64,6 @@ Page({
             method:"GET",
             data:{}
         }).then((res)=> {
-            console.log('res',res)
             if(res.code === 200) {
                 that.setData({
                     list:res.data?.data||[]
@@ -83,6 +78,7 @@ Page({
             that.setData({
                 userInfo:res
             })
+            app.globalData.userInfo = {...app.globalData.userInfo,...res}
         });
     },
 

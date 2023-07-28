@@ -9,7 +9,7 @@
                 </view>
                 <view class="empty-wrap" bindtap="uoloadFile" wx:else>
                     <view>点击上传图片</view>
-                    <text class="desc">每次最多上传1张，单张图片不超过5MB</text>
+                    <text class="desc">每次最多上传1张，单张图片不超过20MB</text>
                 </view>
             </view>
         </view>
@@ -46,13 +46,12 @@
             </scroll-view>
             </view>
         </view>
-        <view class="form-action choose-type-action">
+        <!-- <view class="form-action choose-type-action">
             <view class="head-title">选择类型</view>
             <view class="types-list">
                 <view wx:for="{{redrawList}}" wx:key="index" class="item-type {{item.value === redraw_type?'activity':''}}" bindtap="switchRedraw" data-id="{{item.value}}">{{item.label}}</view>
             </view>
-        
-        </view>
+        </view> -->
         <view class="form-action creat-count-action">
             <view class="head-title">选择生成图片数量</view>
             <view class="count-list">

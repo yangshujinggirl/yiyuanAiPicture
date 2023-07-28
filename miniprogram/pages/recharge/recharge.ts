@@ -1,44 +1,23 @@
 // pages/recharge/recharge.ts
+const app = getApp<IAppOption>();
+import {request} from '../../utils/http';
+
+
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        list:[
-            {
-                point:"20",
-                desc:"20积分，体验加量",
-                btnText:"4.90",
-            }, {
-                point:"20",
-                desc:"20积分，体验加量",
-                btnText:"4.90",
-            }, {
-                point:"20",
-                desc:"20积分，体验加量",
-                btnText:"4.90",
-            }, {
-                point:"20",
-                desc:"20积分，体验加量",
-                btnText:"4.90",
-            }, {
-                point:"20",
-                desc:"20积分，体验加量",
-                btnText:"4.90",
-            }, {
-                point:"20",
-                desc:"20积分，体验加量",
-                btnText:"4.90",
-            }
-        ]
+        list:[],
+        userInfo:app.globalData.userInfo
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad() {
-
+        this.fetchList()
     },
 
     /**
@@ -52,7 +31,17 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-
+    },
+    fetchList(){
+        request({
+            url:"/imgai/zeus/rechargeconf/",
+            data:{},
+            method:"GET",
+        }).then((res)=> {
+            if(res?.code ===200) {
+                this.setData({list:res.data})
+            }
+        })
     },
 
     /**

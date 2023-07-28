@@ -1,0 +1,6 @@
+{
+    "usingComponents": {},
+    "navigationBarTitleText":"历史下载",
+    "backgroundColor":"#1a1a1a",
+    "enablePullDownRefresh": true
+}
