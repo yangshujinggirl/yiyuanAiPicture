@@ -17,7 +17,7 @@
                     <view class="desc">
                         {{item.description}}
                     </view>
-                    <button type="primary" class="recharge-btn" bindtap="goRecharge">¥{{item.amount}}</button>
+                    <button type="primary" class="recharge-btn" bindtap="submitPage" data-id="{{item.product_id}}">¥{{item.amount}}</button>
                 </view>
             </view>
         </view>

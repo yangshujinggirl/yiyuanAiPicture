@@ -43,6 +43,35 @@ Page({
             }
         })
     },
+    submitPage(e){
+        const data = e.currentTarget.dataset;
+        request({
+            url:"/imgai/zeus/recharge/",
+            data:{
+                product:data.id
+            },
+            method:"POST",
+        }).then((res)=> {
+            if(res?.code ===200) {
+                const { data } =res;
+                wx.requestPayment({
+                    timeStamp: data.timeStamp,
+                    nonceStr: data.nonceStr,
+                    package: data.package,
+                    signType: data.signType,
+                    paySign: data.paySign,
+                    success: e => {
+                        wx.showToast({
+                            title:"充值成功"
+                        })
+                    },
+                    fail: err => {
+
+                    }
+                  })
+            }
+        })
+    },
 
     /**
      * 生命周期函数--监听页面隐藏
