@@ -85,6 +85,7 @@ Page({
                })
             }
             wx.hideLoading();
+            wx.stopPullDownRefresh();
         }).catch((err)=> {
             console.log(err)
         })

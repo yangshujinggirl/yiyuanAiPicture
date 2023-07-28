@@ -83,6 +83,7 @@ Page({
                 currentPage:res.data.page_number as number,
                 totalPage:Math.ceil(res.data.total/res.data.page_size)
              })
+            wx.stopPullDownRefresh();
         }
     }).catch((err)=> {
         console.log(err)

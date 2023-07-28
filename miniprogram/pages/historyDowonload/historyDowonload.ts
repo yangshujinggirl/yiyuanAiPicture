@@ -41,7 +41,6 @@ Page({
         const params:{[x:string]:any} = {
             page_number:currentPage
         };
-
         request({
             url:"/imgai/zeus/history/order",
             data:params,
@@ -56,6 +55,7 @@ Page({
                })
             }
             wx.hideLoading();
+            wx.stopPullDownRefresh();
         }).catch((err)=> {
             console.log(err)
         })
