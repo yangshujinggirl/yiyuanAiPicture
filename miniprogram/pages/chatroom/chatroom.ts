@@ -139,25 +139,25 @@ Page({
             if (msg.code == 200) {
                 if (msg.type == 'ChatApi' || msg.type == 'ChatApiEnd') {
                     if (msg.temp_id == that.data.options.id) {
-                        console.log(msg);
+                        // console.log(msg);
                         const messages = that.data.messages;
-                        info += msg.message
-                        if (msg.type == 'ChatApiEnd') {
-                            that.setData({
-                                isLodaing: false
-                            })
+                        that.setData({
+                            isLodaing: false
+                        })
+                        if(messages[messages.length-1].isUser){
                             messages.push({
                                 id: msg.temp_id,
-                                content: info,
+                                content: msg.message,
                                 isUser: false
                             });
-                            that.setData({
-                                messages: messages,
-                                isBtnLodaing: false
-                            })
-                            info = ''
-                            that.autoScroll()
+                        }else{
+                            messages[messages.length-1].content = messages[messages.length-1].content+msg.message
                         }
+                        that.setData({
+                            messages: messages,
+                            isBtnLodaing: false
+                        })
+                        that.autoScroll()
                     }
                 }
             }else if(msg.code == 42001){
