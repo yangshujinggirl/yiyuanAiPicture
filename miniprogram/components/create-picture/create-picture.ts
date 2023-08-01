@@ -181,7 +181,8 @@ Component({
                 const file = tempFilePaths[0];
                 if(file.size > ( 1024 * 1024 )* 20 ) {
                 wx.showToast({
-                    title: '请上传5M以内文件',
+                    title: '请上传20M以内文件',
+                    duration:3000
                 })
                 return;
                 }
@@ -195,7 +196,6 @@ Component({
                 success (res){
                     let data = res.data;
                     data = JSON.parse(data);
-                    console.log("data",data)
                     _this.setData({
                         imgUrl:data?.data?.data?.url,
                         path:data?.data?.data?.path
