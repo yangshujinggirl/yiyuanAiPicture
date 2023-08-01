@@ -31,6 +31,8 @@ Page({
         tempVal:"",
         currentPage:1,
         totalPage:0,
+        visible:false,
+        currentPic:""
     },
 
     /**
@@ -50,6 +52,14 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
+    },
+    handleCancel(){
+        this.setData({currentPic:"",visible:false})
+    },
+    handleEnlarge(e){
+        const data = e.currentTarget.dataset;
+        if(!data.url)return;
+        this.setData({currentPic:data.url,visible:true})
     },
     switchTab(e) {
         const data = e.currentTarget.dataset

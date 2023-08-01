@@ -4,7 +4,7 @@
         <block wx:for="{{list}}" wx:key="*this">
           <swiper-item item-id="{{item.id}}">
             <view class="swiper-item">
-                <image class="main-picture" mode="scaleToFill" src="{{item.result_img||item.source_img}}"></image>
+                <image class="main-picture" mode="aspectFill" src="{{item.result_img||item.source_img}}"></image>
                 <view class="fixed-action">
                     <view class="user-wrap">
                         <image class="user-avatar" mode="aspectFill" src="../../assets/cat.jpg"></image> 

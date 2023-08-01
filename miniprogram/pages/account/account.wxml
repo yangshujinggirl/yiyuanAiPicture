@@ -5,7 +5,7 @@
             <view class="fx-lf">
                 <view class="avatar-wrap">
                     <image class="icon-solid" mode="scaleToFill" src="{{userInfo.avatar || defaultAvatar}}"></image>
-                    <image class="icon-edit" mode="scaleToFill" src="../../assets/account_icon0.png"></image>
+                    <!-- <image class="icon-edit" mode="scaleToFill" src="../../assets/account_icon0.png"></image> -->
                 </view>
                 <view class="info-wrap">
                     <view class="row1">
