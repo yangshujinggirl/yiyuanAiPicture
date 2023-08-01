@@ -27,10 +27,10 @@
                     <image class="icons" mode="scaleToFill" src="../../assets/icon_remark.png"></image>
                     充值说明
                 </view>
-                <view class="flex-wrap">
+                <!-- <view class="flex-wrap">
                 充值记录
                 <image class="icons" mode="scaleToFill" src="../../assets/icon_arrow.png"></image>
-                </view>
+                </view> -->
             </view>
             <view class="content">
                 1.这是说明这是说明这是说明这是说明这是说明这是说明这是说明这是说明这
