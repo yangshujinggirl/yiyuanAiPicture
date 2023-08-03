@@ -121,4 +121,9 @@ Page({
       url:'/subPages/register/register'
     })
   },
+      switchPages(){
+        wx.navigateTo({
+            url:"/subPages/protocol/protocol"
+        })
+    },    
 })

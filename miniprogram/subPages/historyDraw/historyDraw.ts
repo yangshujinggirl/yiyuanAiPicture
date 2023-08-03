@@ -77,7 +77,7 @@ Page({
         const currentPage  = pageNum || this.data.currentPage; 
         const params:{[x:string]:any} = {
             order_type:activityKey==="99"?"":activityKey,
-            tempVal,
+            temp_value:tempVal,
             page_number:currentPage
         };
 

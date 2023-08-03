@@ -57,22 +57,22 @@ Component({
         },{
             iconUrl:"../../assets/scale_3.png",
             value:"文章配图",
-            size:"4:3",
+            size:"3:4",
             key:"3",
         },{
             iconUrl:"../../assets/scale_4.png",
             value:"社交媒体",
-            size:"3:4",
+            size:"4:3",
             key:"4",
         },{
             iconUrl:"../../assets/scale_5.png",
             value:"电脑壁纸",
-            size:"16:19",
+            size:"9:16",
             key:"5",
         },{
             iconUrl:"../../assets/scale_6.png",
             value:"宣传海报",
-            size:"9:16",
+            size:"16:9",
             key:"6",
         },
       ],

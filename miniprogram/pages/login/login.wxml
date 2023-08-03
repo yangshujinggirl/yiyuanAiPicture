@@ -19,12 +19,14 @@
       <button class="btn1 picture-btn"  open-type="getRealtimePhoneNumber" bindgetrealtimephonenumber="bindgetrealtimephonenumber"  wx:if="{{isHighVersion}}" disabled="{{!isAgree}}">微信一键登录</button>
       <!-- 1.2.0获取手机号 -->
       <button class="btn1 picture-btn"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:else disabled="{{!isAgree}}">微信一键登录</button>
-      <button  class="btn2 picture-btn" bindtap="togglePhoneLogin" disabled="{{!isAgree}}"> 手机号码登录 </button>
+      <!-- <button  class="btn2 picture-btn" bindtap="togglePhoneLogin" disabled="{{!isAgree}}"> 手机号码登录 </button> -->
     </view>
     <view class="proto-wrap">
         <label class="checkbox">
             <checkbox model:checked="{{isAgree}}"/>
         </label>
-        <view class="txt">登录代表您已同意<text class="proto-high themeLinearColor" bindtap="switchPages">{{"<<"}}隐私条款{{">>"}}</text>和<text class="proto-high" bindtap="switchPages">{{"<<"}}用户协议{{">>"}}</text></view>
+        
+        <!-- <view class="txt">登录代表您已同意<text class="proto-high themeLinearColor" bindtap="switchPages">{{"<<"}}隐私条款{{">>"}}</text>和<text class="proto-high themeLinearColor" bindtap="switchPages">{{"<<"}}用户协议{{">>"}}</text></view> -->
+        <view class="txt">登录代表您已同意<text class="proto-high themeLinearColor" bindtap="switchPages">{{"<<"}}隐私条款{{">>"}}</text>和<text class="proto-high themeLinearColor" bindtap="switchPages">{{"<<"}}用户协议{{">>"}}</text></view>
     </view>
 </view>

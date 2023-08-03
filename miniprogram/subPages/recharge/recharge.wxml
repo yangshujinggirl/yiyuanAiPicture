@@ -17,7 +17,7 @@
                     <view class="desc">
                         {{item.description}}
                     </view>
-                    <button type="primary" class="recharge-btn" bindtap="submitPage" data-id="{{item.product_id}}">¥{{item.amount}}</button>
+                    <button type="primary" class="recharge-btn" bindtap="submitPage" data-id="{{item.product_id}}">¥{{item.amount/100}}</button>
                 </view>
             </view>
         </view>
@@ -33,8 +33,9 @@
                 </view> -->
             </view>
             <view class="content">
-                1.这是说明这是说明这是说明这是说明这是说明这是说明这是说明这是说明这
-                2.是说明这是说明这是说明这是说明这是说明这是说明说明这是说明
+                <text>1.账户充值仅限微信在线支付方式，充值金额实时到账
+                2.账户有效积分自充值日起至用完为止
+                3.遇到任何问题，联系客服</text>
             </view>
         </view>
     </view>

@@ -1,2 +1,3 @@
 <!--pages/protocol/protocol.wxml-->
-<text>我是协议页</text>
+<web-view src="https://img.shyfai.cn/common/PrivacyAgreement.htm"></web-view>
+

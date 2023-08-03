@@ -9,10 +9,10 @@ Page({
     activityKey:'1',
     fixedList:[
         {
-            tmpName:"精选",
+            tmpName:"推荐",
             tmpValue:'1',
         },{
-            tmpName:"推荐",
+            tmpName:"全部",
             tmpValue:'2',
         }
     ],
