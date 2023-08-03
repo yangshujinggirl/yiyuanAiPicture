@@ -15,7 +15,7 @@
                 <view class="value">{{userInfo.phone}}</view>
             </view>
         </view>
-        <button class="picture-btn" bindtap="handlePhoneLogin">退出登录</button>
+        <!-- <button class="picture-btn" bindtap="handlePhoneLogin">退出登录</button> -->
     </view>
     <view class="authorization-wrap" wx:else>
         <input type="nickname" model:value="{{nickname}}" class="picture-input weui-input" placeholder="请输入昵称"/>
