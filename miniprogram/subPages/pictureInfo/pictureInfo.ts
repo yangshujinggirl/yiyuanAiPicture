@@ -1,35 +1,33 @@
 // pages/pictureInfo/pictureInfo.ts
 import {request} from '../../utils/http';
 const infoKeyList =[
+    // {
+    //     label:"发布标题",
+    //     key:"title",
+    // },
+    // {
+    //     label:"描述信息",
+    //     key:"description",
+    // },
     {
-        label:"发布标题",
-        key:"title",
-    },
-    {
-        label:"描述信息",
-        key:"description",
-    },
-    {
-        label:"风格名称",
-        key:"generate_type",
+        label:"绘图风格",
+        key:"model_name",
     }, 
     {
-        label:"生成方式",
+        label:"绘图方式",
         key:"generate_type",
     },
-    {
-        label:"模型名称",
-        key:"model_name",
-    },
+ 
    {
         label:"提示词",
         key:"prompt",
+        
     },{
         label:"反向关键字",
         key:"negative_prompt",
     },{
         label:"随机参数",
-        key:"seed",
+        key: "seed",
     },{
         label:"提示权重",
         key:"cfg_scale",
@@ -201,6 +199,17 @@ Page({
     getInfo(e){
         const data =e.currentTarget.dataset;
         const { sd } =data;
+        sd.seed = sd.sd_data.seed
+        sd.cfg_scale = sd.sd_data.cfg_scale
+        sd.denoising_strength = sd.sd_data.denoising_strength
+        sd.prompt = sd.sd_data.prompt
+        sd.negative_prompt = sd.sd_data.negative_prompt
+        if (sd.generate_type == 2){
+            sd.generate_type = "文生图"
+        }else{
+            sd.generate_type = "图生图"
+        }
+
         this.setData({ visible:true,currentPicSd:sd })
     },
     closeInfo(){

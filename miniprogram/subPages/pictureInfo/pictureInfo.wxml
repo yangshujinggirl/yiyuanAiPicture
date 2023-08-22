@@ -23,7 +23,7 @@
                                 <image class="icon-img" mode="scaleToFill" src="../../assets/icon_down_svg.svg"></image> 
                                 <text>下载</text>
                         </button>
-                        <view class="fa-item" bindtap="getInfo" data-sd="{{item.sd_data}}">
+                        <view class="fa-item" bindtap="getInfo" data-sd="{{item}}">
                             <image class="icon-action" mode="scaleToFill" src="../../assets/icon_more.png"></image> 
                             <view>详情</view>
                         </view>
