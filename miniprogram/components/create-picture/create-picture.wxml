@@ -16,7 +16,7 @@
         <view class="form-action mark-action">
             <view class="head-title">关键字设置</view>
             <view class="content">
-                    <textarea class="weui-input"  type="text" bindinput="bindKeyInput"  placeholder="请输入作品描述"  model:value="{{prompt}}"/>
+                    <textarea class="weui-input"  type="text" bindinput="bindKeyInput" maxlength="300"   placeholder="请输入作品描述"  model:value="{{prompt}}"/>
             </view>
         </view>
         <view class="form-action frameSize-action">
