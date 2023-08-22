@@ -2,13 +2,13 @@
 <view class="home-container">
     <!-- 分类tab -->
     <view class="tab-list">
-        <scroll-view class="scroll-view_W" scroll-x="true" bindscroll="scroll" >
+        <scroll-view class="scroll-view_W" scroll-x="true" bindscroll="scroll">
             <text wx:for="{{tabList}}" wx:key="id" class="scroll-view-item_w {{item.tmpValue === activityKey?'activity':''}}" key="item.tmpValue" bindtap="switchTab" data-tabId="{{item.tmpValue}}">{{item.tmpName}}</text>
         </scroll-view>
     </view>
     <!-- 列表 -->
     <view class="list-wrap" wx:if="{{dataList.length > 0}}">
-        <view class="item-wrap" wx:for="{{dataList}}" wx:key="index" 
+        <!-- <view class="item-wrap" wx:for="{{dataList}}" wx:key="index" 
         data-currentPage="{{item.currentPage}}"
         data-id="{{item.id}}" bindtap="bindInfoTap">
             <image class="bg-img" mode="aspectFill" src="{{item.result_img}}"></image> 
@@ -26,10 +26,36 @@
                     <text>{{item.download_total}}</text>
                 </view>
             </view>
+        </view> -->
+        <view class="container">
+            <view class="picture">
+                <block wx:for="{{ dataList }}" wx:key="index">
+                    <view class="item" data-currentPage="{{item.currentPage}}"
+        data-id="{{item.id}}" bindtap="bindInfoTap">
+                        <view>
+                            <image lazy-load mode="widthFix" src="{{ item.result_img }}" />
+                        </view>
+                        <view class="info-bottom">
+                            <view class="ib-item">
+                                <image class="icon-img" mode="aspectFill" src="../../assets/bg.png"></image>
+                                <text>{{item.username}}</text>
+                            </view>
+                            <view class="ib-item">
+                                <image class="icon-img" mode="aspectFill" src="../../assets/icon_look.png"></image>
+                                <text>{{item.like_total}}</text>
+                            </view>
+                            <view class="ib-item">
+                                <image class="icon-img" mode="aspectFill" src="../../assets/icon_download.png"></image>
+                                <text>{{item.download_total}}</text>
+                            </view>
+                        </view>
+                    </view>
+                </block>
+            </view>
         </view>
     </view>
     <view class="noData-wrap" wx:else>
-        <image class="nodata-img" mode="scaleToFill" src="../../assets/account_noData.png"></image> 
+        <image class="nodata-img" mode="scaleToFill" src="../../assets/account_noData.png"></image>
         <view>暂无数据</view>
     </view>
 </view>

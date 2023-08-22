@@ -153,11 +153,17 @@ Page({
     submitLike(e){
         const data =e.currentTarget.dataset;
         const {currentImgId,tempValue,currentPage } =this.data;
+        let list = this.data.list
+        let that = this
         request({
             url:"/imgai/zeus/like/",
             data:{order:data.orderid}
         }).then((res)=> {
-            this.fetchList({currentImgId,tempValue, currentPage});
+            list[data.index].like_status = list[data.index].like_status==0?1:0
+            that.setData({
+                list:list
+            })
+            // this.fetchList({currentImgId,tempValue, currentPage});
             // wx.showToast({
             //     type:'success',
             //     title:""
@@ -181,7 +187,8 @@ Page({
                         filePath: res.tempFilePath,
                         success:function(res){
                             wx.showToast({
-                                title:'照片下载成功'
+                                title:'照片下载成功',
+                                duration:3000
                             })
                           wx.hideLoading()
                         }

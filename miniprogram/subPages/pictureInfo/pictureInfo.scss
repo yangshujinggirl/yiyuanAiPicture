@@ -18,11 +18,11 @@ page {
     }
     .fixed-action {
         width: 100%;
-        padding: 0 32rpx 124rpx;
+        padding: 0 32rpx 64rpx;
         box-sizing: border-box;
-        position: fixed;
-        bottom: 0;
-        left: 0;
+        // position: fixed;
+        // bottom: 0;
+        // left: 0;
     }
     .user-wrap {
         display: flex;
@@ -33,6 +33,7 @@ page {
         color: #fff;
         line-height: 40rpx;
         margin-bottom: 32rpx;
+        margin-top: 32rpx;
         .user-avatar {
             width: 40rpx;
             height: 40rpx;

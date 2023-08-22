@@ -24,13 +24,13 @@ Page({
   },
 
   onLoad() {
-
+    this.resetData();
+    this.fetchList(1);
   },
   onUnload: function() {
   },
   onShow(){
-    this.resetData();
-    this.fetchList();
+    
     this.fetchTemplateList();
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
             this.getTabBar().setData({

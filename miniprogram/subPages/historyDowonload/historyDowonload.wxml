@@ -2,7 +2,7 @@
         <view class="content-wrap">
             <view class="list2-wrap"  wx:if="{{list.length > 0}}">
                 <view class="item-wrap" wx:for="{{list}}" wx:key="index">
-                    <image class="icon-place" mode="aspectFill" src="{{item.order_info.result_img}}"></image>
+                    <image class="icon-place" mode="widthFix" src="{{item.order_info.result_img}}"></image>
                 </view>
             </view>
             <view class="nodata-wrap" wx:else>
